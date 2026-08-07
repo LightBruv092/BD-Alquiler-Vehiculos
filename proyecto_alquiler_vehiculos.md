@@ -39,5 +39,14 @@ Sistema de base de datos para una plataforma digital que gestione el alquiler de
 
 - **LataM Airlines**: Modelo de viajes integrados
 - **Kayak**: Comparador de opciones y precios
-
-
+  
+  - Características que comparten:
+    
+    - Ambas herramientas son útiles en cuanto al alquiler de vehículos pues son fáciles de usar.
+    - Tienen un rango predefinido de edad para autorizar el uso del servicio.
+    - Existen ciudades específicas donde se pueden encontrar los puntos físicos. 
+    - Al elegir una de las ciudades permitidas en el sistema las opciones de vehículos disponibles se muestran para su alquiler.
+    - Hay filtros para mejores resultados, entre ellos: tipo de auto, precio, capacidad, transmisión, características, etc.
+    - Al intentar reservar un vehículo se da la posibilidad al usuario de elegir el tiempo de alquiler, con un máximo de un año, y de escoger la hora de devolución del día elegido.
+  
+  
