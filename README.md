@@ -9,9 +9,9 @@
 | # | Nombre completo | Código | Usuario de GitHub | Correo |
 |---|---|---|---|---|
 | 1 | _Juan Jose Vargas Campuzano_ | 2251299 | Juan-var-camp | vargascampuzanojuanjose@gmail.com |
-| 2 | _(escribir nombre aquí)_ | | @ | |
-| 3 | _(escribir nombre aquí)_ | | @ | |
-| 4 | _(escribir nombre aquí)_ | | @ | |
+| 2 | _Juan Camilo Arrieta Méndez_ | 2251966 | ElJuank9  | jcarrieta0921@gmail.com |
+| 3 | _David Santiago Lizarazo García_ | 2250146 | LightBruv092 | davidlizarazof@gmail.com |
+| 4 | _Cristian Armando Aguilar Giraldo_ | 2242854 | SrLoon | crisagi088@gmail.com |
 | 5 | _(escribir nombre aquí)_ | | @ | |
 
 ## 1. Descripción del Proyecto
