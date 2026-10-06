@@ -21,12 +21,12 @@ Sistema de base de datos para una plataforma digital que gestione el alquiler de
 
 ## 2. Objetivos Principales
 
-- Automatizar el proceso de reserva y alquiler de vehículos
-- Proporcionar disponibilidad en tiempo real
-- Facilitar la gestión de flota vehicular
-- Implementar seguimiento GPS y telemetría
-- Ofrecer múltiples opciones de pago
-- Mejorar la experiencia del usuario mediante una plataforma digital moderna
+- Automatizar el proceso de reserva y alquiler de vehículos.
+- Proporcionar disponibilidad en tiempo real.
+- Facilitar la gestión de flota vehicular.
+- Implementar seguimiento GPS y telemetría.
+- Ofrecer múltiples opciones de pago.
+- Mejorar la experiencia del usuario mediante una plataforma digital moderna.
 
 
 ## 3. Conceptos importantes y relevantes de la temática
