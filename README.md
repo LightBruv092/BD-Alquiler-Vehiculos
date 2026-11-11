@@ -1,4 +1,4 @@
-# 🚗 Plataforma de Gestión de Alquiler de Vehículos
+#  Plataforma de Gestión de Alquiler de Vehículos
 
 Proyecto final de la asignatura **Bases de Datos**: diseño e implementación de una base de datos relacional para una plataforma de reserva y alquiler de vehículos (autos, camionetas, motos, vans, etc.) disponibles en varias ciudades de Colombia.
 
@@ -17,29 +17,35 @@ Proyecto final de la asignatura **Bases de Datos**: diseño e implementación de
 
 ---
 
-## 🎯 Objetivo
+##  Objetivo
 
 Desarrollar una base de datos relacional que soporte la reserva y el alquiler de distintos tipos de vehículos en varias ciudades y sedes de Colombia: diferentes tipos de cliente (ocasional, frecuente, empresarial), precios y membresías diferenciados, disponibilidad y recogida/devolución en distintas sedes, garantías, inspecciones, pagos, facturación y penalizaciones.
 
 ---
 
-## 📁 Guía rápida
 
-| # | Contenido de la presentación | Carpeta |
+
+---
+
+##  Guía rápida
+
+| # | Contenido de la presentación | Carpeta / Recurso |
 |---|---|---|
-| 1 | Análisis de la situación | [`analisis-situacion/`](investigacion/) |
+|  | **Notebook Oficial de Presentación** | [`Presentacion_Proyecto_Final_BD1.ipynb`](Presentacion_Proyecto_Final_BD1.ipynb) |
+| 1 | Análisis de la situación | [`analisis-situacion/investigacion.md`](analisis-situacion/investigacion.md) |
 | 2 | Modelo Entidad-Relación | [`modelo-entidad-relacion/`](modelo-entidad-relacion/) |
 | 3 | Modelo Relacional y su normalización | [`modelo-relacional-normalizacion/`](modelo-relacional-normalizacion/) |
 | 4 | Base de datos en SQL — esquema | [`base-de-datos-sql/creacion-base-de-datos.sql`](base-de-datos-sql/creacion-base-de-datos.sql) |
-| 5 | Carga de datos al modelo | [`base-de-datos-sql/insercion-datos.sql`](base-de-datos-sql/insercion-datos.sql) |
+| 5 | Carga de datos corporativos | [`base-de-datos-sql/insercion-datos.sql`](base-de-datos-sql/insercion-datos.sql) |
 | 6 | 10 consultas sobre la base de datos | [`base-de-datos-sql/consultas.sql`](base-de-datos-sql/consultas.sql) |
 
 
-## 📁 Estructura completa del repositorio
+##  Estructura completa del repositorio
 
 ```text
 .
 ├── README.md
+├── Presentacion_Proyecto_Final_BD1.ipynb      
 ├── analisis-situacion/
 │   └── investigacion.md
 ├── modelo-entidad-relacion/
@@ -49,6 +55,6 @@ Desarrollar una base de datos relacional que soporte la reserva y el alquiler de
 │   └── Informe_Normalizacion_Juan_.docx
 └── base-de-datos-sql/
     ├── creacion-base-de-datos.sql
-    ├── insercion-datos.sql
+    ├── insercion-datos.sql                     
     └── consultas.sql
 ```

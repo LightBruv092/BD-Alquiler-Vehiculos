@@ -1,314 +1,780 @@
 -- =====================================================================
--- 02_datos_prueba.sql
--- Datos de prueba: al menos 5 registros por tabla (incluidas las de
--- subtipo CARRO/MOTO y PERSONA_NATURAL/EMPRESA, que también deben
--- cumplir el mínimo por separado).
+-- 02_datos_prueba.sql - DATASET CORPORATIVO EMPRESARIAL
+-- Plataforma de Gestión de Alquiler de Vehículos
+-- Universidad Industrial de Santander - Bases de Datos 1
 -- =====================================================================
 USE alquiler_vehiculos;
 SET FOREIGN_KEY_CHECKS = 0;
 
--- --------------------------------------------------------------------
--- MÓDULO A: FLOTA Y SEDES
--- --------------------------------------------------------------------
-
+-- 1. CIUDAD (6 capitales de Colombia)
 INSERT INTO ciudad (id_ciudad, nombre, departamento) VALUES
-  (1,'Bucaramanga','Santander'),
-  (2,'Bogotá','Cundinamarca'),
-  (3,'Medellín','Antioquia'),
-  (4,'Cali','Valle del Cauca'),
-  (5,'Cartagena','Bolívar');
+  (1, 'Bucaramanga', 'Santander'),
+  (2, 'Bogotá', 'Cundinamarca'),
+  (3, 'Medellín', 'Antioquia'),
+  (4, 'Cali', 'Valle del Cauca'),
+  (5, 'Cartagena', 'Bolívar'),
+  (6, 'Barranquilla', 'Atlántico');
 
+-- 2. SEDE (12 sedes: aeropuertos y sedes urbanas)
 INSERT INTO sede (id_sede, id_ciudad, nombre, via, barrio, indicaciones, horario_apertura, horario_cierre, es_aeropuerto, estado) VALUES
-  (10,1,'Aeropuerto Palonegro','Km 14 vía Lebrija','Zona Aeroportuaria','Frente a la terminal de llegadas','06:00:00','20:00:00',TRUE,'ACTIVA'),
-  (11,1,'Cabecera','Calle 36 # 24-56','Cabecera del Llano',NULL,'07:00:00','19:00:00',FALSE,'ACTIVA'),
-  (12,2,'Aeropuerto El Dorado','Av. El Dorado','Fontibón','Puente aéreo, local 12','05:30:00','22:00:00',TRUE,'ACTIVA'),
-  (13,3,'Poblado','Cra 43A # 10-15','El Poblado',NULL,'07:00:00','19:00:00',FALSE,'ACTIVA'),
-  (14,4,'Centro','Av. 6N # 23-45','Centro',NULL,'07:00:00','18:00:00',FALSE,'ACTIVA'),
-  (15,5,'Centro Histórico','Calle del Arsenal # 8-30','Centro','Cerca al Castillo San Felipe','07:00:00','19:00:00',FALSE,'ACTIVA');
+  (10, 1, 'Aeropuerto Palonegro', 'Km 14 Vía Lebrija', 'Zona Aeroportuaria', 'Frente a terminal de llegadas', '06:00:00', '22:00:00', TRUE, 'ACTIVA'),
+  (11, 1, 'Cabecera Principal', 'Calle 48 # 32-14', 'Cabecera del Llano', 'Junto a C.C. Cuarta Etapa', '07:00:00', '20:00:00', FALSE, 'ACTIVA'),
+  (12, 2, 'Aeropuerto El Dorado T1', 'Av. El Dorado # 103-09', 'Fontibón', 'Piso 1, salidas internacionales local 15', '05:00:00', '23:30:00', TRUE, 'ACTIVA'),
+  (13, 2, 'Bogotá Norte - Usaquén', 'Cra 15 # 119-24', 'Santa Bárbara', 'Frente a Unicentro Bogotá', '07:00:00', '20:00:00', FALSE, 'ACTIVA'),
+  (14, 3, 'Aeropuerto J.M. Córdova', 'Km 29 Vía Rionegro', 'Zona Aeropuerto', 'Llegadas nacionales local 104', '06:00:00', '23:00:00', TRUE, 'ACTIVA'),
+  (15, 3, 'Medellín El Poblado', 'Cra 43A # 7-50', 'El Poblado', 'Milla de Oro, Edificio Forum', '07:00:00', '20:00:00', FALSE, 'ACTIVA'),
+  (16, 4, 'Aeropuerto Bonilla Aragón', 'Km 15 Vía Palmira', 'Zona Aeroportuaria', 'Hall principal llegadas', '06:00:00', '22:00:00', TRUE, 'ACTIVA'),
+  (17, 4, 'Cali Granada', 'Av. 8N # 14-22', 'Granada', 'Zona gastronómica', '07:30:00', '19:30:00', FALSE, 'ACTIVA'),
+  (18, 5, 'Aeropuerto Rafael Núñez', 'Calle 70 # 3-12', 'Crespo', 'Puerta 2 terminal nacional', '06:00:00', '23:00:00', TRUE, 'ACTIVA'),
+  (19, 5, 'Cartagena Bocagrande', 'Cra 2 # 9-45', 'Bocagrande', 'Avenida San Martín frente Decameron', '07:30:00', '20:00:00', FALSE, 'ACTIVA'),
+  (20, 6, 'Aeropuerto E. Cortissoz', 'Km 7 Vía Soledad', 'Zona Aeropuerto', 'Local comercial 102', '06:00:00', '22:00:00', TRUE, 'ACTIVA'),
+  (21, 6, 'Barranquilla Alto Prado', 'Calle 76 # 54-11', 'Alto Prado', 'Centro empresarial Country Plaza', '08:00:00', '19:00:00', FALSE, 'ACTIVA');
 
+-- 3. SEDE_TELEFONO
 INSERT INTO sede_telefono (id_sede, telefono) VALUES
-  (10,'6076344000'),(10,'6076344001'),(11,'6076451122'),
-  (12,'6013456789'),(13,'6044567890'),(14,'6025678901'),(15,'6056789012');
+  (10, '6076344000'), (10, '3104501100'),
+  (11, '6076451122'), (11, '3104501101'),
+  (12, '6013456789'), (12, '3157890001'),
+  (13, '6012145566'), (13, '3157890002'),
+  (14, '6044567890'), (14, '3186540001'),
+  (15, '6043128899'), (15, '3186540002'),
+  (16, '6025678901'), (16, '3128900001'),
+  (17, '6026613344'),
+  (18, '6056789012'), (18, '3174560001'),
+  (19, '6056651234'),
+  (20, '6053851122'), (20, '3167890001'),
+  (21, '6053689900');
 
+-- 4. ENLAZAR (Matriz de recargo por retorno inter-sede)
 INSERT INTO enlazar (id_sede_origen, id_sede_destino, valor_recargo) VALUES
-  (10,12,180000),(12,10,180000),(10,13,220000),
-  (13,14,210000),(14,15,260000),(11,12,150000);
+  (10, 11, 35000),   (11, 10, 35000),
+  (10, 12, 195000),  (12, 10, 195000),
+  (10, 14, 230000),  (14, 10, 230000),
+  (12, 14, 180000),  (14, 12, 180000),
+  (12, 16, 210000),  (16, 12, 210000),
+  (14, 16, 220000),  (16, 14, 220000),
+  (18, 20, 120000),  (20, 18, 120000),
+  (12, 18, 380000),  (18, 12, 380000),
+  (10, 18, 350000),  (18, 10, 350000),
+  (14, 18, 320000),  (18, 14, 320000);
 
+-- 5. EMPLEADO (18 empleados organizados jerárquicamente)
 INSERT INTO empleado (id_empleado, id_sede, id_supervisor, tipo_documento, numero_documento, nombres, apellidos, cargo, fecha_ingreso, estado) VALUES
-  (30,10,NULL,'CC','91234501','Carlos','Ruiz','GERENTE_SEDE','2022-02-01','ACTIVO'),
-  (31,10,30,'CC','91234502','Laura','Gómez','ASESOR','2023-05-15','ACTIVO'),
-  (32,10,30,'CC','91234503','Pedro','Martínez','INSPECTOR','2023-08-20','ACTIVO'),
-  (33,12,NULL,'CC','91234504','Marta','Díaz','GERENTE_SEDE','2021-11-10','ACTIVO'),
-  (34,12,33,'CC','91234505','Jorge','Pérez','ASESOR','2024-01-12','ACTIVO'),
-  (35,13,NULL,'CC','91234506','Sofía','León','ASESOR','2023-03-03','ACTIVO');
+  (30, 10, NULL, 'CC', '91234501', 'Carlos', 'Ruiz Morales', 'GERENTE_SEDE', '2021-02-01', 'ACTIVO'),
+  (31, 10, 30,   'CC', '91234502', 'Laura', 'Gómez Prada', 'ASESOR', '2022-05-15', 'ACTIVO'),
+  (32, 10, 30,   'CC', '91234503', 'Pedro', 'Martínez Silva', 'INSPECTOR', '2022-08-20', 'ACTIVO'),
+  (33, 11, 30,   'CC', '91234504', 'Claudia', 'Vargas Rey', 'ASESOR', '2023-01-10', 'ACTIVO'),
+  (34, 12, NULL, 'CC', '91234505', 'Marta', 'Díaz Cárdenas', 'GERENTE_SEDE', '2020-11-10', 'ACTIVO'),
+  (35, 12, 34,   'CC', '91234506', 'Jorge', 'Pérez Salazar', 'ASESOR', '2023-01-12', 'ACTIVO'),
+  (36, 12, 34,   'CC', '91234507', 'Andrés', 'Castro Londoño', 'INSPECTOR', '2023-04-18', 'ACTIVO'),
+  (37, 13, 34,   'CC', '91234508', 'Mariana', 'Jiménez Ruiz', 'ASESOR', '2023-07-01', 'ACTIVO'),
+  (38, 14, NULL, 'CC', '91234509', 'Santiago', 'Mejía Osorio', 'GERENTE_SEDE', '2021-06-15', 'ACTIVO'),
+  (39, 14, 38,   'CC', '91234510', 'Sofía', 'León Vélez', 'ASESOR', '2022-03-03', 'ACTIVO'),
+  (40, 14, 38,   'CC', '91234511', 'David', 'Montoya Gil', 'INSPECTOR', '2022-09-14', 'ACTIVO'),
+  (41, 15, 38,   'CC', '91234512', 'Valentina', 'Restrepo Hoyos', 'ASESOR', '2023-02-20', 'ACTIVO'),
+  (42, 16, NULL, 'CC', '91234513', 'Hernando', 'Caicedo Borrero', 'GERENTE_SEDE', '2021-09-01', 'ACTIVO'),
+  (43, 16, 42,   'CC', '91234514', 'Gabriela', 'Ospina Ramos', 'ASESOR', '2023-05-10', 'ACTIVO'),
+  (44, 16, 42,   'CC', '91234515', 'Javier', 'Tascón Marín', 'INSPECTOR', '2023-08-01', 'ACTIVO'),
+  (45, 18, NULL, 'CC', '91234516', 'Raúl', 'Mercado Herrera', 'GERENTE_SEDE', '2021-12-01', 'ACTIVO'),
+  (46, 18, 45,   'CC', '91234517', 'Yuliana', 'Polo Berrio', 'ASESOR', '2022-10-15', 'ACTIVO'),
+  (47, 18, 45,   'CC', '91234518', 'Katerine', 'Marrugo Blanquicet', 'INSPECTOR', '2023-03-22', 'ACTIVO');
 
+-- 6. CATEGORIA (Gamas de vehículos)
 INSERT INTO categoria (id_categoria, codigo, nombre, descripcion, clase_vehiculo, edad_minima, licencia_requerida, monto_garantia) VALUES
-  (1,'ECO-01','Económico','Autos compactos de bajo consumo','CARRO',21,'B1',1500000),
-  (2,'SUV-01','SUV','Camionetas familiares 5 puestos','CARRO',23,'B1',2500000),
-  (3,'PICK-01','Pickup 4x4','Camionetas doble cabina','CARRO',25,'B1',3000000),
-  (4,'VAN-01','Van 7 pasajeros','Vans para grupos y empresas','CARRO',23,'B2',2800000),
-  (5,'MOT-01','Moto urbana','Motos de bajo cilindraje','MOTO',18,'A2',600000);
+  (1, 'ECO-01', 'Económico Compacto', 'Automóviles compactos de bajo consumo, ideales para ciudad', 'CARRO', 21, 'B1', 1500000),
+  (2, 'SUV-01', 'SUV Familiar', 'Camionetas medianas 5 puestos para carretera y turismo', 'CARRO', 23, 'B1', 2500000),
+  (3, 'PICK-01', 'Pickup 4x4 Doble Cabina', 'Camionetas utilitarias diésel para trabajo pesado e industria', 'CARRO', 25, 'B1', 3500000),
+  (4, 'VAN-01', 'Van Pasajeros 9P', 'Vehículos de alta capacidad para traslados ejecutivos y grupos', 'CARRO', 24, 'B2', 3000000),
+  (5, 'MOT-01', 'Moto Urbana y Touring', 'Motos ágiles de 125 a 650 cc para movilidad rápida y turismo', 'MOTO', 18, 'A2', 700000),
+  (6, 'ELEC-01', 'Eléctrico / Híbrido Premium', 'Vehículos sostenibles con tecnología de última generación', 'CARRO', 23, 'B1', 3000000);
 
+-- 7. MODELO (15 modelos de vehículos)
 INSERT INTO modelo (id_modelo, marca, nombre) VALUES
-  (1,'Renault','Kwid'),
-  (2,'Chevrolet','Spark GT'),
-  (3,'Toyota','Fortuner'),
-  (4,'Nissan','Frontier'),
-  (5,'Renault','Duster'),
-  (6,'Hyundai','H1'),
-  (7,'AKT','NKD 125'),
-  (8,'Yamaha','XTZ 150');
+  (1,  'Renault',    'Kwid Zen'),
+  (2,  'Chevrolet',  'Onix Turbo Sedan'),
+  (3,  'Kia',        'Picanto Vibrant'),
+  (4,  'Renault',    'Duster Zen 4x2'),
+  (5,  'Toyota',     'Fortuner SRX 4x4'),
+  (6,  'Mazda',      'CX-5 Touring 2.0'),
+  (7,  'Toyota',     'Hilux Doble Cabina 4x4'),
+  (8,  'Nissan',     'Frontier Pro4X'),
+  (9,  'Hyundai',    'H1 Minibus 9 Pasajeros'),
+  (10, 'Renault',    'Master Combi Executive'),
+  (11, 'AKT',        'NKD 125'),
+  (12, 'Yamaha',     'XTZ 150 Enduro'),
+  (13, 'Suzuki',     'V-Strom 650 XT'),
+  (14, 'BYD',        'Yuan Plus EV 100% Eléctrico'),
+  (15, 'Toyota',     'Corolla Cross Hybrid 1.8');
 
--- VEHICULO: 7 carros (ids 100-106) + 5 motos (ids 107-111) = 12 vehículos.
--- clase_vehiculo lo asigna automáticamente el trigger trg_vehiculo_clase_bi
--- a partir de la categoría, así que no se incluye en el INSERT.
-INSERT INTO vehiculo (id_vehiculo, id_categoria, id_modelo, id_sede_actual, placa, vin, anio_modelo, color, tipo_energia, km_actual, estado_operativo, fecha_adquisicion) VALUES
-  (100,1,1,10,'ABC123','9BWZZZ377VT004251',2024,'Blanco','GASOLINA',15200,'ACTIVO','2024-01-10'),
-  (101,1,2,11,'ABC124','9BWZZZ377VT004252',2023,'Rojo','GASOLINA',28750,'ACTIVO','2023-06-15'),
-  (102,2,5,10,'ABC125','9BWZZZ377VT004253',2025,'Gris','GASOLINA',4300,'ACTIVO','2025-02-01'),
-  (103,2,3,12,'ABC126','9BWZZZ377VT004254',2024,'Negro','HIBRIDO',19800,'ACTIVO','2024-03-20'),
-  (104,3,4,12,'ABC127','9BWZZZ377VT004255',2023,'Blanco','DIESEL',41200,'ACTIVO','2023-04-05'),
-  (105,4,6,13,'ABC128','9BWZZZ377VT004256',2022,'Azul','DIESEL',58900,'EN_MANTENIMIENTO','2022-09-12'),
-  (106,1,1,14,'ABC129','9BWZZZ377VT004257',2025,'Blanco','ELECTRICO',1250,'ACTIVO','2025-07-01'),
-  (107,5,7,10,'XYZ001',NULL,2024,'Negro','GASOLINA',8200,'ACTIVO','2024-05-10'),
-  (108,5,7,11,'XYZ002',NULL,2023,'Rojo','GASOLINA',12600,'ACTIVO','2023-10-18'),
-  (109,5,8,12,'XYZ003',NULL,2024,'Blanco','GASOLINA',6400,'ACTIVO','2024-08-22'),
-  (110,5,8,13,'XYZ004',NULL,2022,'Azul','GASOLINA',22100,'ACTIVO','2022-12-01'),
-  (111,5,7,15,'XYZ005',NULL,2025,'Negro','GASOLINA',900,'ACTIVO','2025-09-05');
+-- 8. VEHICULO (42 unidades en flota nacional)
+INSERT INTO vehiculo (id_vehiculo, id_categoria, id_modelo, id_sede_actual, placa, vin, anio_modelo, color, tipo_energia, km_actual, estado_operativo, fecha_adquisicion, clase_vehiculo) VALUES
+  (100, 1, 1, 10, 'KWD101', '9BWZZZ377VT004201', 2024, 'Blanco Polar', 'GASOLINA', 16400, 'ACTIVO', '2024-01-10', 'CARRO'),
+  (101, 1, 2, 11, 'ONX102', '9BWZZZ377VT004202', 2023, 'Rojo Rubi', 'GASOLINA', 31200, 'ACTIVO', '2023-05-15', 'CARRO'),
+  (102, 1, 3, 10, 'PCT103', '9BWZZZ377VT004203', 2024, 'Plata Astral', 'GASOLINA', 19800, 'ACTIVO', '2024-02-12', 'CARRO'),
+  (103, 1, 1, 12, 'KWD104', '9BWZZZ377VT004204', 2025, 'Gris Grafito', 'GASOLINA', 6500, 'ACTIVO', '2025-01-20', 'CARRO'),
+  (104, 1, 2, 12, 'ONX105', '9BWZZZ377VT004205', 2024, 'Blanco Nieve', 'GASOLINA', 22100, 'ACTIVO', '2024-03-10', 'CARRO'),
+  (105, 1, 3, 13, 'PCT106', '9BWZZZ377VT004206', 2023, 'Azul Medianoche', 'GASOLINA', 34500, 'ACTIVO', '2023-08-01', 'CARRO'),
+  (106, 1, 1, 14, 'KWD107', '9BWZZZ377VT004207', 2024, 'Blanco Polar', 'GASOLINA', 18300, 'ACTIVO', '2024-04-15', 'CARRO'),
+  (107, 1, 2, 15, 'ONX108', '9BWZZZ377VT004208', 2024, 'Negro Ébano', 'GASOLINA', 24600, 'ACTIVO', '2024-06-05', 'CARRO'),
+  (108, 1, 1, 16, 'KWD109', '9BWZZZ377VT004209', 2023, 'Rojo Rubi', 'GASOLINA', 38900, 'ACTIVO', '2023-09-12', 'CARRO'),
+  (109, 1, 2, 18, 'ONX110', '9BWZZZ377VT004210', 2025, 'Plata Astral', 'GASOLINA', 8900, 'ACTIVO', '2025-02-10', 'CARRO'),
+  (110, 2, 4, 10, 'DST201', '9BWZZZ377VT004211', 2024, 'Gris Estrella', 'GASOLINA', 28400, 'ACTIVO', '2024-01-18', 'CARRO'),
+  (111, 2, 5, 10, 'FRT202', '9BWZZZ377VT004212', 2024, 'Blanco Perlado', 'DIESEL', 35600, 'ACTIVO', '2024-02-28', 'CARRO'),
+  (112, 2, 6, 11, 'MCX203', '9BWZZZ377VT004213', 2025, 'Rojo Cristal', 'GASOLINA', 11400, 'ACTIVO', '2025-01-15', 'CARRO'),
+  (113, 2, 4, 12, 'DST204', '9BWZZZ377VT004214', 2023, 'Arena Dunna', 'GASOLINA', 46800, 'ACTIVO', '2023-03-25', 'CARRO'),
+  (114, 2, 5, 12, 'FRT205', '9BWZZZ377VT004215', 2024, 'Negro Azabache', 'DIESEL', 39100, 'ACTIVO', '2024-04-10', 'CARRO'),
+  (115, 2, 6, 13, 'MCX206', '9BWZZZ377VT004216', 2025, 'Gris Titanio', 'GASOLINA', 14200, 'ACTIVO', '2025-02-01', 'CARRO'),
+  (116, 2, 4, 14, 'DST207', '9BWZZZ377VT004217', 2024, 'Blanco Glaciar', 'GASOLINA', 26500, 'ACTIVO', '2024-05-18', 'CARRO'),
+  (117, 2, 5, 14, 'FRT208', '9BWZZZ377VT004218', 2024, 'Plata Metálico', 'DIESEL', 32700, 'ACTIVO', '2024-07-20', 'CARRO'),
+  (118, 2, 6, 15, 'MCX209', '9BWZZZ377VT004219', 2023, 'Azul Oscuro', 'GASOLINA', 52300, 'EN_MANTENIMIENTO', '2023-04-12', 'CARRO'),
+  (119, 2, 5, 16, 'FRT210', '9BWZZZ377VT004220', 2024, 'Blanco Perlado', 'DIESEL', 29800, 'ACTIVO', '2024-08-14', 'CARRO'),
+  (120, 2, 4, 18, 'DST211', '9BWZZZ377VT004221', 2025, 'Naranja Atacama', 'GASOLINA', 9800, 'ACTIVO', '2025-03-01', 'CARRO'),
+  (121, 3, 7, 10, 'HLX301', '9BWZZZ377VT004222', 2023, 'Blanco Puro', 'DIESEL', 54200, 'ACTIVO', '2023-02-10', 'CARRO'),
+  (122, 3, 8, 11, 'FRN302', '9BWZZZ377VT004223', 2024, 'Gris Magnético', 'DIESEL', 37400, 'ACTIVO', '2024-03-22', 'CARRO'),
+  (123, 3, 7, 12, 'HLX303', '9BWZZZ377VT004224', 2024, 'Plata Metálico', 'DIESEL', 41800, 'ACTIVO', '2024-05-01', 'CARRO'),
+  (124, 3, 8, 14, 'FRN304', '9BWZZZ377VT004225', 2023, 'Negro', 'DIESEL', 61200, 'EN_MANTENIMIENTO', '2023-01-15', 'CARRO'),
+  (125, 3, 7, 16, 'HLX305', '9BWZZZ377VT004226', 2024, 'Blanco Puro', 'DIESEL', 36800, 'ACTIVO', '2024-06-18', 'CARRO'),
+  (126, 3, 8, 20, 'FRN306', '9BWZZZ377VT004227', 2024, 'Rojo Fuego', 'DIESEL', 29500, 'ACTIVO', '2024-07-25', 'CARRO'),
+  (127, 4, 9, 10, 'VAN401', '9BWZZZ377VT004228', 2023, 'Plata', 'DIESEL', 58700, 'ACTIVO', '2023-03-14', 'CARRO'),
+  (128, 4, 10, 12, 'VAN402', '9BWZZZ377VT004229', 2024, 'Blanco Glaciar', 'DIESEL', 34200, 'ACTIVO', '2024-04-20', 'CARRO'),
+  (129, 4, 9, 14, 'VAN403', '9BWZZZ377VT004230', 2023, 'Gris Grafito', 'DIESEL', 67300, 'EN_MANTENIMIENTO', '2023-02-18', 'CARRO'),
+  (130, 4, 10, 18, 'VAN404', '9BWZZZ377VT004231', 2024, 'Blanco Puro', 'DIESEL', 28100, 'ACTIVO', '2024-08-01', 'CARRO'),
+  (131, 5, 11, 10, 'NKD501', NULL, 2024, 'Negro Mate', 'GASOLINA', 12400, 'ACTIVO', '2024-02-10', 'MOTO'),
+  (132, 5, 12, 10, 'XTZ502', NULL, 2024, 'Azul Racing', 'GASOLINA', 14800, 'ACTIVO', '2024-03-15', 'MOTO'),
+  (133, 5, 13, 11, 'VST503', NULL, 2025, 'Amarillo Campeón', 'GASOLINA', 6200, 'ACTIVO', '2025-01-10', 'MOTO'),
+  (134, 5, 11, 12, 'NKD504', NULL, 2024, 'Rojo Racing', 'GASOLINA', 15300, 'ACTIVO', '2024-04-05', 'MOTO'),
+  (135, 5, 12, 12, 'XTZ505', NULL, 2024, 'Blanco', 'GASOLINA', 13700, 'ACTIVO', '2024-05-12', 'MOTO'),
+  (136, 5, 13, 13, 'VST506', NULL, 2024, 'Gris Mate', 'GASOLINA', 18900, 'ACTIVO', '2024-02-18', 'MOTO'),
+  (137, 5, 11, 14, 'NKD507', NULL, 2023, 'Negro', 'GASOLINA', 24100, 'ACTIVO', '2023-08-20', 'MOTO'),
+  (138, 5, 12, 15, 'XTZ508', NULL, 2024, 'Azul', 'GASOLINA', 11800, 'ACTIVO', '2024-06-14', 'MOTO'),
+  (139, 6, 14, 12, 'BYD601', '9BWZZZ377VT004232', 2025, 'Verde Menta', 'ELECTRICO', 5200, 'ACTIVO', '2025-03-10', 'CARRO'),
+  (140, 6, 15, 12, 'TOY602', '9BWZZZ377VT004233', 2024, 'Gris Celeste', 'HIBRIDO', 18400, 'ACTIVO', '2024-07-01', 'CARRO'),
+  (141, 6, 14, 14, 'BYD603', '9BWZZZ377VT004234', 2025, 'Blanco Nácar', 'ELECTRICO', 7100, 'ACTIVO', '2025-02-25', 'CARRO');
 
+-- 9. CARRO (34 vehículos de cuatro ruedas)
 INSERT INTO carro (id_vehiculo, num_puertas, capacidad_pasajeros, transmision, capacidad_maletero_l, traccion) VALUES
-  (100,5,5,'MANUAL',290,'4X2'),
-  (101,5,5,'MANUAL',285,'4X2'),
-  (102,5,5,'AUTOMATICA',445,'4X2'),
-  (103,5,7,'AUTOMATICA',716,'4X4'),
-  (104,4,5,'MANUAL',1080,'4X4'),
-  (105,4,10,'MANUAL',NULL,'4X2'),
-  (106,5,5,'AUTOMATICA',300,'4X2');
+  (100, 5, 5, 'MANUAL', 290, '4X2'),
+  (101, 5, 5, 'MANUAL', 285, '4X2'),
+  (102, 5, 5, 'MANUAL', 255, '4X2'),
+  (103, 5, 5, 'MANUAL', 290, '4X2'),
+  (104, 5, 5, 'AUTOMATICA', 285, '4X2'),
+  (105, 5, 5, 'MANUAL', 255, '4X2'),
+  (106, 5, 5, 'MANUAL', 290, '4X2'),
+  (107, 5, 5, 'AUTOMATICA', 285, '4X2'),
+  (108, 5, 5, 'MANUAL', 290, '4X2'),
+  (109, 5, 5, 'MANUAL', 285, '4X2'),
+  (110, 5, 5, 'MANUAL', 475, '4X2'),
+  (111, 5, 7, 'AUTOMATICA', 716, '4X4'),
+  (112, 5, 5, 'AUTOMATICA', 442, '4X2'),
+  (113, 5, 5, 'MANUAL', 475, '4X2'),
+  (114, 5, 7, 'AUTOMATICA', 716, '4X4'),
+  (115, 5, 5, 'AUTOMATICA', 442, '4X2'),
+  (116, 5, 5, 'MANUAL', 475, '4X2'),
+  (117, 5, 7, 'AUTOMATICA', 716, '4X4'),
+  (118, 5, 5, 'AUTOMATICA', 442, '4X2'),
+  (119, 5, 7, 'AUTOMATICA', 716, '4X4'),
+  (120, 5, 5, 'MANUAL', 475, '4X2'),
+  (121, 4, 5, 'MANUAL', 1080, '4X4'),
+  (122, 4, 5, 'AUTOMATICA', 1050, '4X4'),
+  (123, 4, 5, 'MANUAL', 1080, '4X4'),
+  (124, 4, 5, 'AUTOMATICA', 1050, '4X4'),
+  (125, 4, 5, 'MANUAL', 1080, '4X4'),
+  (126, 4, 5, 'MANUAL', 1050, '4X4'),
+  (127, 4, 9, 'MANUAL', 850, '4X2'),
+  (128, 4, 9, 'MANUAL', 1100, '4X2'),
+  (129, 4, 9, 'MANUAL', 850, '4X2'),
+  (130, 4, 9, 'MANUAL', 1100, '4X2'),
+  (139, 5, 5, 'AUTOMATICA', 440, '4X2'),
+  (140, 5, 5, 'AUTOMATICA', 440, '4X2'),
+  (141, 5, 5, 'AUTOMATICA', 440, '4X2');
 
+-- 10. MOTO (8 motocicletas)
 INSERT INTO moto (id_vehiculo, cilindraje_cc, tipo_moto) VALUES
-  (107,125,'URBANA'),
-  (108,125,'URBANA'),
-  (109,150,'DEPORTIVA'),
-  (110,150,'DEPORTIVA'),
-  (111,125,'URBANA');
+  (131, 125, 'URBANA'),
+  (132, 150, 'TODOTERRENO'),
+  (133, 650, 'TODOTERRENO'),
+  (134, 125, 'URBANA'),
+  (135, 150, 'TODOTERRENO'),
+  (136, 650, 'TODOTERRENO'),
+  (137, 125, 'URBANA'),
+  (138, 150, 'TODOTERRENO');
 
+-- 11. MANTENIMIENTO (Historial y 3 vehículos activos en taller)
 INSERT INTO mantenimiento (id_mantenimiento, id_vehiculo, tipo, descripcion, fecha_inicio, fecha_fin_estimada, fecha_fin_real, km_al_ingreso, costo) VALUES
-  (60,100,'PREVENTIVO','Cambio de aceite y filtros','2026-09-01 08:00:00','2026-09-01 12:00:00','2026-09-01 11:30:00',14800,180000),
-  (61,102,'PREVENTIVO','Revisión de frenos','2026-08-15 09:00:00','2026-08-15 13:00:00','2026-08-15 12:45:00',3900,220000),
-  (62,104,'CORRECTIVO','Cambio de amortiguadores','2026-07-10 08:00:00','2026-07-11 17:00:00','2026-07-11 16:00:00',40500,980000),
-  (63,105,'CORRECTIVO','Revisión sistema eléctrico','2026-10-28 08:00:00','2026-11-08 17:00:00',NULL,58900,NULL),
-  (64,107,'PREVENTIVO','Cambio de aceite y revisión general','2026-09-20 09:00:00','2026-09-20 11:00:00','2026-09-20 10:40:00',8000,95000);
+  (60, 100, 'PREVENTIVO', 'Mantenimiento 15.000 km cambio aceite y filtros', '2026-08-10 08:00:00', '2026-08-10 14:00:00', '2026-08-10 13:30:00', 15100, 220000),
+  (61, 101, 'PREVENTIVO', 'Revisión sistema de frenos y pastillas', '2026-07-15 09:00:00', '2026-07-15 16:00:00', '2026-07-15 15:45:00', 29500, 310000),
+  (62, 110, 'PREVENTIVO', 'Alineación, balanceo y rotación de llantas', '2026-09-05 08:00:00', '2026-09-05 12:00:00', '2026-09-05 11:30:00', 27000, 180000),
+  (63, 121, 'CORRECTIVO', 'Cambio kit embrague y ajuste caja transferencia 4x4', '2026-08-20 08:00:00', '2026-08-22 17:00:00', '2026-08-22 16:30:00', 52000, 1450000),
+  (64, 131, 'PREVENTIVO', 'Cambio de aceite, bujía y tensión de cadena', '2026-09-12 09:00:00', '2026-09-12 11:30:00', '2026-09-12 11:15:00', 11900, 95000),
+  (65, 140, 'PREVENTIVO', 'Inspección de batería de tracción y software híbrido', '2026-09-25 08:30:00', '2026-09-25 15:00:00', '2026-09-25 14:10:00', 17800, 420000),
+  (66, 118, 'CORRECTIVO', 'Falla en compresor aire acondicionado y fuga de refrigerante', '2026-10-26 08:00:00', '2026-11-12 17:00:00', NULL, 52300, NULL),
+  (67, 124, 'CORRECTIVO', 'Reparación de turbo y cambio de inyectores diésel', '2026-10-31 08:00:00', '2026-11-15 17:00:00', NULL, 61200, NULL),
+  (68, 129, 'CORRECTIVO', 'Reparación de módulo de transmisión y suspensión delantera', '2026-11-04 09:00:00', '2026-11-18 17:00:00', NULL, 67300, NULL);
 
--- --------------------------------------------------------------------
--- MÓDULO B: CLIENTES Y MEMBRESÍAS
--- --------------------------------------------------------------------
-
--- CLIENTE: 8 persona_natural (200-207) + 5 empresa (208-212) = 13.
+-- 12. CLIENTE (25 clientes: 10 Empresas y 15 Particulares)
 INSERT INTO cliente (id_cliente, correo, fecha_registro, estado) VALUES
-  (200,'laura.gomez.cliente@correo.com','2025-11-15 10:00:00','ACTIVO'),
-  (201,'andres.rojas@correo.com','2025-12-02 09:30:00','ACTIVO'),
-  (202,'maria.fernandez@correo.com','2025-06-20 14:10:00','ACTIVO'),
-  (203,'juan.ramirez@correo.com','2026-01-05 11:45:00','ACTIVO'),
-  (204,'camila.suarez@correo.com','2024-03-10 08:20:00','ACTIVO'),
-  (205,'felipe.castro@correo.com','2026-02-14 16:00:00','ACTIVO'),
-  (206,'diana.moreno@correo.com','2025-09-01 10:30:00','ACTIVO'),
-  (207,'oscar.vargas@correo.com','2026-04-22 12:15:00','ACTIVO'),
-  (208,'compras@transandinos.com.co','2025-01-20 09:00:00','ACTIVO'),
-  (209,'logistica@construsan.com.co','2025-04-11 10:00:00','ACTIVO'),
-  (210,'flota@turismosantander.com','2025-07-30 11:30:00','ACTIVO'),
-  (211,'administracion@eventoscolombia.co','2026-02-01 09:15:00','ACTIVO'),
-  (212,'compras@agroexportcol.com','2025-10-05 13:00:00','ACTIVO');
+  (200, 'laura.gomez@corporativo-andino.com', '2024-03-10 10:00:00', 'ACTIVO'),
+  (201, 'andres.rojas@santander-viajes.com', '2024-05-18 09:30:00', 'ACTIVO'),
+  (202, 'maria.fernandez@gmail.com', '2024-06-20 14:10:00', 'ACTIVO'),
+  (203, 'juan.ramirez@outlook.com', '2025-01-05 11:45:00', 'ACTIVO'),
+  (204, 'camila.suarez@ing-construsan.com', '2024-02-14 08:20:00', 'ACTIVO'),
+  (205, 'felipe.castro@hotmail.com', '2025-02-14 16:00:00', 'ACTIVO'),
+  (206, 'diana.moreno@eventoscol.com', '2024-08-01 10:30:00', 'ACTIVO'),
+  (207, 'oscar.vargas@agroexport.com', '2024-09-22 12:15:00', 'ACTIVO'),
+  (208, 'gabriela.torres@medellin-corp.com', '2024-11-12 15:20:00', 'ACTIVO'),
+  (209, 'ricardo.mendoza@ecopetrol-eng.com', '2025-01-18 09:00:00', 'ACTIVO'),
+  (210, 'natalia.silva@cali-turismo.com', '2025-03-04 11:10:00', 'ACTIVO'),
+  (211, 'hector.duarte@caribe-rent.com', '2025-04-15 16:40:00', 'ACTIVO'),
+  (212, 'juliana.ordonez@consultoria.co', '2025-05-20 10:00:00', 'ACTIVO'),
+  (213, 'esteban.gutierrez@tech-col.com', '2025-06-11 13:30:00', 'ACTIVO'),
+  (214, 'patricia.valencia@turismo.net', '2025-07-28 09:45:00', 'ACTIVO'),
+  (215, 'compras@transandinos.com.co', '2023-11-10 08:00:00', 'ACTIVO'),
+  (216, 'logistica@construsan.com.co', '2024-01-15 09:00:00', 'ACTIVO'),
+  (217, 'flota@turismosantander.com', '2024-02-01 10:00:00', 'ACTIVO'),
+  (218, 'operaciones@eventoscolombia.co', '2024-03-12 11:15:00', 'ACTIVO'),
+  (219, 'comercial@agroexportcol.com', '2024-04-18 14:00:00', 'ACTIVO'),
+  (220, 'flotas@terpeloperaciones.com.co', '2024-05-22 08:30:00', 'ACTIVO'),
+  (221, 'servicios@bancolombia-regional.com', '2024-06-30 09:15:00', 'ACTIVO'),
+  (222, 'ingenieria@ecopetrol-contratistas.co', '2024-07-14 10:30:00', 'ACTIVO'),
+  (223, 'suministros@cementoargos-ops.com', '2024-08-25 11:45:00', 'ACTIVO'),
+  (224, 'cadena.frio@alqueria-logistica.com', '2024-09-05 13:00:00', 'ACTIVO');
 
+-- 13. CLIENTE_TELEFONO
 INSERT INTO cliente_telefono (id_cliente, telefono) VALUES
-  (200,'3001234567'),(200,'6076123456'),
-  (201,'3109876543'),
-  (202,'3201112233'),
-  (203,'3157778899'),
-  (204,'3012223344'),
-  (208,'6076700000'),
-  (209,'6013456000'),
-  (210,'6076711111');
+  (200, '3104567890'), (200, '6076458900'),
+  (201, '3158901234'), (202, '3123456789'),
+  (203, '3187654321'), (204, '3112345678'),
+  (205, '3169876543'), (206, '3174561234'),
+  (207, '3198765432'), (208, '3109876543'),
+  (209, '3156789012'), (210, '3134567890'),
+  (211, '3145678901'), (212, '3126789012'),
+  (213, '3189012345'), (214, '3178901234'),
+  (215, '6076700000'), (215, '3108889900'),
+  (216, '6013456000'), (217, '6076711111'),
+  (218, '6044445555'), (219, '6056608888'),
+  (220, '6012349999'), (221, '6045109000'),
+  (222, '6076228800'), (223, '6043198000'),
+  (224, '6017425000');
 
--- EMPRESA antes que PERSONA_NATURAL (ver nota de la Etapa 4).
+-- 14. EMPRESA (10 Grandes Clientes Corporativos)
 INSERT INTO empresa (id_cliente, nit, razon_social, contacto_nombre) VALUES
-  (208,'900123456-7','Transportes Andinos S.A.S.','Marta Gómez'),
-  (209,'900234567-1','Construsan Ingeniería Ltda.','Hernán Ríos'),
-  (210,'900345678-2','Turismo Santander S.A.S.','Patricia Luna'),
-  (211,'900456789-3','Eventos Colombia S.A.','Camilo Reyes'),
-  (212,'900567890-4','AgroExport Colombia S.A.S.','Beatriz Niño');
+  (215, '900123456-7', 'Transportes Andinos S.A.S.', 'Marta Gómez Ortiz'),
+  (216, '900234567-1', 'Construsan Ingeniería Ltda.', 'Hernán Ríos Cadena'),
+  (217, '900345678-2', 'Turismo Santander S.A.S.', 'Patricia Luna Gómez'),
+  (218, '900456789-3', 'Eventos Colombia S.A.', 'Camilo Reyes Pardo'),
+  (219, '900567890-4', 'AgroExport Colombia S.A.S.', 'Beatriz Niño Prada'),
+  (220, '860001234-5', 'Terpel Operaciones y Flotas S.A.', 'Rodrigo Albarracín'),
+  (221, '890903938-8', 'Bancolombia Regional Nororiente', 'Claudia Morales Villa'),
+  (222, '899999068-1', 'Ecopetrol Contratistas Asociados S.A.S.', 'Alfonso Serrano Jaimes'),
+  (223, '890900256-4', 'Cementos Argos Operaciones Logísticas', 'Guillermo Restrepo'),
+  (224, '860005224-9', 'Alquería Distribución y Logística S.A.', 'Mauricio Santamaría');
 
+-- 15. PERSONA_NATURAL (15 personas naturales)
 INSERT INTO persona_natural (id_cliente, id_empresa, tipo_documento, numero_documento, nombres, apellidos, fecha_nacimiento) VALUES
-  (200,NULL,'CC','1098765432','Laura','Gómez','1995-04-12'),
-  (201,NULL,'CC','1087654321','Andrés','Rojas','1990-08-25'),
-  (202,NULL,'CC','1076543210','María','Fernández','1988-01-30'),
-  (203,NULL,'CE','4456789','Juan','Ramírez','1999-11-03'),
-  (204,NULL,'CC','1065432109','Camila','Suárez','1993-06-18'),
-  (205,NULL,'CC','1054321098','Felipe','Castro','2002-09-09'),
-  (206,208,'CC','1043210987','Diana','Moreno','1991-02-14'),
-  (207,209,'CC','1032109876','Óscar','Vargas','1985-12-01');
+  (200, 215, 'CC', '1098765432', 'Laura', 'Gómez Prada', '1992-04-12'),
+  (201, 217, 'CC', '1087654321', 'Andrés', 'Rojas Pinzón', '1989-08-25'),
+  (202, NULL, 'CC', '1076543210', 'María', 'Fernández Soto', '1988-01-30'),
+  (203, NULL, 'CE', '4456789', 'Juan', 'Ramírez Bianchi', '1995-11-03'),
+  (204, 216, 'CC', '1065432109', 'Camila', 'Suárez Duque', '1993-06-18'),
+  (205, NULL, 'CC', '1054321098', 'Felipe', 'Castro Meza', '2001-09-09'),
+  (206, 218, 'CC', '1043210987', 'Diana', 'Moreno Castillo', '1990-02-14'),
+  (207, 219, 'CC', '1032109876', 'Óscar', 'Vargas Villamizar', '1985-12-01'),
+  (208, 221, 'CC', '1021098765', 'Gabriela', 'Torres Saldarriaga', '1991-07-22'),
+  (209, 222, 'CC', '1010987654', 'Ricardo', 'Mendoza Bohórquez', '1983-03-15'),
+  (210, 217, 'CC', '1099887766', 'Natalia', 'Silva Beltrán', '1994-10-05'),
+  (211, NULL, 'CC', '1088776655', 'Héctor', 'Duarte Carvajal', '1987-05-19'),
+  (212, NULL, 'CC', '1077665544', 'Juliana', 'Ordóñez Marín', '1996-09-30'),
+  (213, 220, 'CC', '1066554433', 'Esteban', 'Gutiérrez Flórez', '1990-11-14'),
+  (214, 224, 'CC', '1055443322', 'Patricia', 'Valencia Ocampo', '1986-04-08');
 
+-- 16. LICENCIA (20 licencias con alertas por vencer)
 INSERT INTO licencia (id_cliente, categoria, numero_licencia, fecha_expedicion, fecha_vencimiento, pais_expedicion) VALUES
-  (200,'B1','68001098765','2018-05-10','2029-05-10','Colombia'),
-  (201,'B1','68001087654','2015-03-22','2027-03-22','Colombia'),
-  (202,'A2','68001076543','2010-07-01','2026-12-15','Colombia'),
-  (203,'B1','68001076544','2020-01-15','2030-01-15','Colombia'),
-  (204,'B1','68001065432','2016-09-09','2028-09-09','Colombia'),
-  (204,'A2','68001065433','2019-02-20','2027-02-20','Colombia'),
-  (205,'A2','68001054321','2021-10-05','2027-10-05','Colombia'),
-  (206,'B1','68001043210','2017-04-14','2027-04-14','Colombia'),
-  (207,'B1','68001032109','2012-06-30','2026-12-30','Colombia');
+  (200, 'B1', '68001098765', '2016-11-28', '2026-11-28', 'Colombia'),
+  (202, 'B1', '68001076543', '2016-12-15', '2026-12-15', 'Colombia'),
+  (207, 'B1', '68001032109', '2017-01-02', '2027-01-02', 'Colombia'),
+  (200, 'A2', '68001098766', '2019-03-10', '2028-03-10', 'Colombia'),
+  (202, 'A2', '68001076544', '2018-07-20', '2027-07-20', 'Colombia'),
+  (205, 'A2', '68001054321', '2021-10-05', '2029-10-05', 'Colombia'),
+  (211, 'A2', '68001088776', '2020-04-12', '2028-04-12', 'Colombia'),
+  (201, 'B1', '68001087654', '2020-05-15', '2029-05-15', 'Colombia'),
+  (203, 'B1', '68001076545', '2021-02-18', '2030-02-18', 'Colombia'),
+  (204, 'B1', '68001065432', '2019-09-09', '2028-09-09', 'Colombia'),
+  (204, 'B2', '68001065433', '2022-03-15', '2027-03-15', 'Colombia'),
+  (206, 'B1', '68001043210', '2020-04-14', '2028-04-14', 'Colombia'),
+  (208, 'B1', '68001021098', '2019-11-20', '2028-11-20', 'Colombia'),
+  (209, 'B1', '68001010987', '2018-08-10', '2027-08-10', 'Colombia'),
+  (209, 'B2', '68001010988', '2021-06-25', '2028-06-25', 'Colombia'),
+  (210, 'B1', '68001099887', '2022-01-10', '2030-01-10', 'Colombia'),
+  (212, 'B1', '68001077665', '2023-04-15', '2031-04-15', 'Colombia'),
+  (213, 'B1', '68001066554', '2020-09-01', '2029-09-01', 'Colombia'),
+  (214, 'B1', '68001055443', '2019-12-12', '2028-12-12', 'Colombia'),
+  (214, 'B2', '68001055444', '2022-08-30', '2027-08-30', 'Colombia');
 
+-- 17. PLAN_MEMBRESIA
 INSERT INTO plan_membresia (id_plan, nombre, aplica_a, descuento_pct, puntos_minimos, beneficios, estado) VALUES
-  (1,'BRONCE','PERSONA',0,0,'Acceso a promociones generales.','VIGENTE'),
-  (2,'PLATA','PERSONA',10,1000,'10% de descuento y check-in prioritario.','VIGENTE'),
-  (3,'ORO','PERSONA',15,3000,'15% de descuento, un conductor adicional gratis al año.','VIGENTE'),
-  (4,'PLATINO','AMBOS',20,6000,'20% de descuento, upgrade de categoría sujeto a disponibilidad.','VIGENTE'),
-  (5,'CORPORATIVO','EMPRESA',12,0,'12% de descuento y facturación consolidada mensual.','VIGENTE');
+  (1, 'BRONCE', 'PERSONA', 0.00, 0, 'Acceso a promociones y acumulación base.', 'VIGENTE'),
+  (2, 'PLATA', 'PERSONA', 10.00, 1000, '10% de descuento y check-in prioritario.', 'VIGENTE'),
+  (3, 'ORO', 'PERSONA', 15.00, 3000, '15% de descuento y conductor adicional gratis.', 'VIGENTE'),
+  (4, 'PLATINO', 'AMBOS', 20.00, 6000, '20% de descuento y upgrade de categoría.', 'VIGENTE'),
+  (5, 'CORPORATIVO FLOTAS', 'EMPRESA', 18.00, 0, '18% de descuento corporativo y crédito 30 días.', 'VIGENTE');
 
+-- 18. MEMBRESIA (13 membresías activas)
 INSERT INTO membresia (id_membresia, id_cliente, id_plan, fecha_inicio, fecha_fin, estado) VALUES
-  (1,200,1,'2025-01-10','2025-12-31','VENCIDA'),
-  (2,200,2,'2026-01-10',NULL,'ACTIVA'),
-  (3,201,2,'2026-02-15',NULL,'ACTIVA'),
-  (4,202,3,'2025-11-01',NULL,'ACTIVA'),
-  (5,203,1,'2026-03-01',NULL,'ACTIVA'),
-  (6,208,5,'2025-01-20',NULL,'ACTIVA');
+  (1, 200, 3, '2025-01-10', NULL, 'ACTIVA'),
+  (2, 201, 2, '2025-03-15', NULL, 'ACTIVA'),
+  (3, 202, 4, '2024-11-01', NULL, 'ACTIVA'),
+  (4, 204, 3, '2025-02-10', NULL, 'ACTIVA'),
+  (5, 206, 2, '2025-04-01', NULL, 'ACTIVA'),
+  (6, 208, 4, '2025-01-20', NULL, 'ACTIVA'),
+  (7, 209, 3, '2025-05-12', NULL, 'ACTIVA'),
+  (8, 215, 5, '2024-01-01', NULL, 'ACTIVA'),
+  (9, 216, 5, '2024-02-15', NULL, 'ACTIVA'),
+  (10, 217, 5, '2024-03-01', NULL, 'ACTIVA'),
+  (11, 218, 5, '2024-04-10', NULL, 'ACTIVA'),
+  (12, 220, 5, '2024-06-01', NULL, 'ACTIVA'),
+  (13, 222, 5, '2024-08-01', NULL, 'ACTIVA');
 
+-- 19. MOVIMIENTO_PUNTOS (22 movimientos)
 INSERT INTO movimiento_puntos (id_cliente, consecutivo, fecha, puntos, motivo, id_contrato) VALUES
-  (200,1,'2026-01-15 10:00:00',30,'ALQUILER',NULL),
-  (200,2,'2026-06-02 09:00:00',25,'ALQUILER',NULL),
-  (201,1,'2026-06-10 10:00:00',50,'ALQUILER',NULL),
-  (202,1,'2025-11-05 11:00:00',800,'ALQUILER',NULL),
-  (202,2,'2026-03-01 09:30:00',-500,'REDENCION',NULL),
-  (203,1,'2026-03-10 10:00:00',40,'ALQUILER',NULL);
+  (202, 1, '2025-01-15 10:00:00', 1500, 'BONO', NULL),
+  (202, 2, '2025-04-20 18:00:00', 2200, 'ALQUILER', NULL),
+  (202, 3, '2025-08-10 12:00:00', 1800, 'ALQUILER', NULL),
+  (202, 4, '2025-10-15 15:30:00', 1400, 'ALQUILER', NULL),
+  (202, 5, '2026-03-01 09:30:00', -500, 'REDENCION', NULL),
+  (200, 1, '2025-02-10 11:00:00', 1000, 'BONO', NULL),
+  (200, 2, '2025-06-15 14:00:00', 1200, 'ALQUILER', NULL),
+  (200, 3, '2025-11-20 10:30:00', 1100, 'ALQUILER', NULL),
+  (200, 4, '2026-05-18 16:00:00', 900, 'ALQUILER', NULL),
+  (208, 1, '2025-03-01 09:00:00', 1000, 'BONO', NULL),
+  (208, 2, '2025-07-22 17:00:00', 1600, 'ALQUILER', NULL),
+  (208, 3, '2025-12-05 11:00:00', 1200, 'ALQUILER', NULL),
+  (204, 1, '2025-03-15 10:00:00', 800, 'BONO', NULL),
+  (204, 2, '2025-09-10 12:00:00', 1400, 'ALQUILER', NULL),
+  (204, 3, '2026-02-14 18:30:00', 1000, 'ALQUILER', NULL),
+  (201, 1, '2025-04-10 09:30:00', 600, 'BONO', NULL),
+  (201, 2, '2025-10-18 15:00:00', 900, 'ALQUILER', NULL),
+  (201, 3, '2026-04-25 11:00:00', 600, 'ALQUILER', NULL),
+  (209, 1, '2025-06-01 10:00:00', 500, 'BONO', NULL),
+  (209, 2, '2025-11-15 16:00:00', 950, 'ALQUILER', NULL),
+  (206, 1, '2025-05-12 11:00:00', 400, 'BONO', NULL),
+  (206, 2, '2025-12-20 10:00:00', 800, 'ALQUILER', NULL);
 
--- --------------------------------------------------------------------
--- MÓDULO C: TARIFAS Y RESERVAS
--- --------------------------------------------------------------------
-
+-- 20. TEMPORADA
 INSERT INTO temporada (id_temporada, nombre, fecha_inicio, fecha_fin, prioridad) VALUES
-  (1,'Regular 2026','2026-01-01','2026-12-31',0),
-  (2,'Semana Santa 2026','2026-03-28','2026-04-05',10),
-  (3,'Vacaciones Mitad de Año 2026','2026-06-15','2026-07-15',10),
-  (4,'Diciembre 2026','2026-12-01','2026-12-31',20),
-  (5,'Feria de Bucaramanga 2026','2026-09-16','2026-09-27',15);
+  (1, 'Regular Anual 2026', '2026-01-01', '2026-12-31', 0),
+  (2, 'Semana Santa 2026', '2026-03-28', '2026-04-05', 10),
+  (3, 'Vacaciones Mitad de Año 2026', '2026-06-15', '2026-07-20', 10),
+  (4, 'Feria de Bucaramanga y Flores 2026', '2026-08-01', '2026-09-30', 15),
+  (5, 'Temporada Alta Fin de Año 2026', '2026-12-01', '2026-12-31', 20);
 
+-- 21. TARIFA (42 combinaciones)
 INSERT INTO tarifa (id_categoria, id_ciudad, id_temporada, valor_dia) VALUES
-  (1,1,1,95000),
-  (1,1,5,120000),
-  (2,1,1,180000),
-  (2,2,1,195000),
-  (3,2,1,230000),
-  (4,3,1,210000),
-  (5,1,1,55000),
-  (5,4,1,50000);
+  (1, 1, 1, 95000),
+  (1, 2, 1, 105000),
+  (1, 3, 1, 105000),
+  (1, 4, 1, 98000),
+  (1, 5, 1, 115000),
+  (1, 6, 1, 100000),
+  (2, 1, 1, 185000),
+  (2, 2, 1, 210000),
+  (2, 3, 1, 205000),
+  (2, 4, 1, 190000),
+  (2, 5, 1, 225000),
+  (2, 6, 1, 195000),
+  (3, 1, 1, 260000),
+  (3, 2, 1, 290000),
+  (3, 3, 1, 280000),
+  (3, 4, 1, 270000),
+  (3, 5, 1, 310000),
+  (3, 6, 1, 275000),
+  (4, 1, 1, 240000),
+  (4, 2, 1, 270000),
+  (4, 3, 1, 260000),
+  (4, 4, 1, 250000),
+  (4, 5, 1, 290000),
+  (4, 6, 1, 255000),
+  (5, 1, 1, 55000),
+  (5, 2, 1, 65000),
+  (5, 3, 1, 60000),
+  (5, 4, 1, 55000),
+  (5, 5, 1, 70000),
+  (5, 6, 1, 58000),
+  (6, 1, 1, 220000),
+  (6, 2, 1, 250000),
+  (6, 3, 1, 240000),
+  (6, 4, 1, 230000),
+  (6, 5, 1, 270000),
+  (6, 6, 1, 235000),
+  (1, 1, 4, 120000),
+  (2, 1, 4, 225000),
+  (2, 3, 4, 240000),
+  (1, 5, 5, 145000),
+  (2, 5, 5, 270000),
+  (6, 2, 5, 290000);
 
--- RESERVA: 9 reservas con distintos estados.
-INSERT INTO reserva (id_reserva, id_cliente, id_categoria, id_sede_recogida, id_sede_devolucion_prevista, codigo_reserva, fecha_creacion, fecha_hora_recogida, fecha_hora_devolucion_prevista, estado, canal_origen, descuento_aplicado_pct, valor_dia_pactado, fecha_cancelacion) VALUES
-  (500,200,1,10,10,'R-2026-0500','2026-10-01 09:00:00','2026-10-15 10:00:00','2026-10-18 10:00:00','CUMPLIDA','APP',10,85500,NULL),
-  (501,201,2,10,12,'R-2026-0501','2026-10-02 11:00:00','2026-10-20 09:00:00','2026-10-24 09:00:00','CUMPLIDA','WEB',10,162000,NULL),
-  (502,202,5,10,10,'R-2026-0502','2026-10-03 08:30:00','2026-10-22 08:00:00','2026-10-25 08:00:00','CUMPLIDA','APP',15,46750,NULL),
-  (503,203,1,11,11,'R-2026-0503','2026-10-28 10:00:00','2026-11-10 09:00:00','2026-11-14 09:00:00','CONFIRMADA','MOSTRADOR',0,95000,NULL),
-  (504,204,3,12,12,'R-2026-0504','2026-10-05 12:00:00','2026-10-25 11:00:00','2026-10-28 11:00:00','CUMPLIDA','WEB',0,230000,NULL),
-  (505,205,5,13,13,'R-2026-0505','2026-10-06 09:00:00','2026-10-27 09:00:00','2026-10-29 09:00:00','CUMPLIDA','APP',0,52000,NULL),
-  (506,206,4,13,13,'R-2026-0506','2026-10-07 10:00:00','2026-11-20 09:00:00','2026-11-25 09:00:00','CONFIRMADA','MOSTRADOR',12,184800,NULL),
-  (507,207,1,14,14,'R-2026-0507','2026-10-08 08:00:00','2026-10-12 10:00:00','2026-10-14 10:00:00','CANCELADA','WEB',0,95000,'2026-10-11 08:00:00'),
-  (508,205,5,15,15,'R-2026-0508','2026-10-09 09:30:00','2026-10-30 09:00:00','2026-11-01 09:00:00','NO_SHOW','APP',0,55000,NULL);
-
--- --------------------------------------------------------------------
--- MÓDULO D: CONTRATOS Y FINANZAS
--- --------------------------------------------------------------------
-
--- CONTRATO: 6 contratos (5 cerrados + 1 abierto). El trigger
--- trg_contrato_sin_solape permite varios CERRADO sobre el mismo vehículo
--- pero solo uno ABIERTO a la vez.
-INSERT INTO contrato (id_contrato, id_reserva, id_vehiculo, id_empleado, id_sede_devolucion_real, numero_contrato, modalidad, fecha_hora_entrega, fecha_hora_devolucion_real, estado) VALUES
-  (900,500,100,31,10,'C-2026-0900','CORTO_PLAZO','2026-10-15 10:10:00','2026-10-18 09:50:00','CERRADO'),
-  (901,501,102,31,12,'C-2026-0901','CORTO_PLAZO','2026-10-20 09:05:00','2026-10-24 10:30:00','CERRADO'),
-  (902,502,107,31,10,'C-2026-0902','CORTO_PLAZO','2026-10-22 08:10:00','2026-10-25 08:05:00','CERRADO'),
-  (903,504,104,34,12,'C-2026-0903','CORTO_PLAZO','2026-10-25 11:05:00','2026-10-28 13:30:00','CERRADO'),
-  (904,505,110,35,13,'C-2026-0904','CORTO_PLAZO','2026-10-27 09:10:00','2026-10-29 09:00:00','CERRADO'),
-  (905,503,101,31,NULL,'C-2026-0905','CORTO_PLAZO','2026-11-10 09:05:00',NULL,'ABIERTO');
-
-INSERT INTO conductor_autorizado (id_contrato, id_cliente, es_principal, cargo_dia_pactado) VALUES
-  (900,200,TRUE,0),
-  (901,201,TRUE,0),
-  (901,204,FALSE,15000),
-  (902,202,TRUE,0),
-  (903,204,TRUE,0),
-  (904,205,TRUE,0),
-  (905,203,TRUE,0),
-  (905,206,FALSE,15000);
-
+-- 22. SERVICIO_ADICIONAL
 INSERT INTO servicio_adicional (id_servicio, nombre, tipo, descripcion, valor_dia, deducible, estado) VALUES
-  (1,'Seguro Todo Riesgo','COBERTURA','Cobertura total de daños, deducible reducido.',45000,300000,'VIGENTE'),
-  (2,'Silla para bebé','EQUIPO','Silla homologada para niños de 9 a 18 kg.',15000,NULL,'VIGENTE'),
-  (3,'GPS portátil','EQUIPO','Navegador GPS con mapas de Colombia.',12000,NULL,'VIGENTE'),
-  (4,'Internet WiFi portátil','EQUIPO','Router 4G con datos ilimitados.',18000,NULL,'VIGENTE'),
-  (5,'Baúl de techo','EQUIPO','Baúl de 400 litros para equipaje adicional.',20000,NULL,'VIGENTE');
+  (1, 'Protección Total Todo Riesgo (CDW+TP)', 'COBERTURA', 'Exoneración total de responsabilidad por colisión y hurto.', 48000, 0.00, 'VIGENTE'),
+  (2, 'Protección Básica Deducible Reducido', 'COBERTURA', 'Cobertura con deducible estándar del 10% del siniestro.', 28000, 450000.00, 'VIGENTE'),
+  (3, 'Silla de Seguridad Infantil Homologada', 'EQUIPO', 'Silla ergonómica para bebés y niños de 9 a 25 kg.', 18000, NULL, 'VIGENTE'),
+  (4, 'Módem WiFi 4G LTE Portátil', 'EQUIPO', 'Internet móvil ilimitado para hasta 5 dispositivos.', 22000, NULL, 'VIGENTE'),
+  (5, 'Conductor Adicional Autorizado', 'COBERTURA', 'Inclusión de segundo conductor oficial en el contrato.', 16000, NULL, 'VIGENTE'),
+  (6, 'Portabicicletas de Techo / Maletero', 'EQUIPO', 'Soporte homologado para transporte de 2 bicicletas.', 25000, NULL, 'VIGENTE');
 
+-- 23. RESERVA (35 reservas en diversos estados)
+INSERT INTO reserva (id_reserva, id_cliente, id_categoria, id_sede_recogida, id_sede_devolucion_prevista, codigo_reserva, fecha_creacion, fecha_hora_recogida, fecha_hora_devolucion_prevista, estado, canal_origen, descuento_aplicado_pct, valor_dia_pactado, fecha_cancelacion) VALUES
+  (500, 200, 1, 10, 10, 'R-2026-0500', '2026-05-01 09:00:00', '2026-05-10 10:00:00', '2026-05-13 10:00:00', 'CUMPLIDA', 'APP', 15.0, 80750, NULL),
+  (501, 200, 2, 10, 10, 'R-2026-0501', '2026-08-01 11:00:00', '2026-08-15 09:00:00', '2026-08-19 09:00:00', 'CUMPLIDA', 'WEB', 15.0, 157250, NULL),
+  (502, 200, 1, 11, 11, 'R-2026-0502', '2026-10-01 10:00:00', '2026-10-10 08:30:00', '2026-10-13 08:30:00', 'CUMPLIDA', 'APP', 15.0, 80750, NULL),
+  (503, 201, 2, 10, 12, 'R-2026-0503', '2026-05-20 14:00:00', '2026-06-01 08:00:00', '2026-06-06 08:00:00', 'CUMPLIDA', 'WEB', 10.0, 166500, NULL),
+  (504, 202, 5, 10, 10, 'R-2026-0504', '2026-04-01 08:30:00', '2026-04-10 09:00:00', '2026-04-14 09:00:00', 'CUMPLIDA', 'APP', 20.0, 44000, NULL),
+  (505, 202, 5, 10, 10, 'R-2026-0505', '2026-07-01 10:00:00', '2026-07-10 08:00:00', '2026-07-15 08:00:00', 'CUMPLIDA', 'APP', 20.0, 44000, NULL),
+  (506, 202, 6, 12, 12, 'R-2026-0506', '2026-08-20 15:00:00', '2026-09-01 10:00:00', '2026-09-05 10:00:00', 'CUMPLIDA', 'APP', 20.0, 200000, NULL),
+  (507, 203, 1, 12, 12, 'R-2026-0507', '2026-05-02 12:00:00', '2026-05-15 09:00:00', '2026-05-18 09:00:00', 'CUMPLIDA', 'MOSTRADOR', 0.0, 105000, NULL),
+  (508, 204, 3, 12, 12, 'R-2026-0508', '2026-05-25 10:00:00', '2026-06-10 08:00:00', '2026-06-16 08:00:00', 'CUMPLIDA', 'WEB', 15.0, 246500, NULL),
+  (509, 205, 5, 14, 14, 'R-2026-0509', '2026-06-20 11:30:00', '2026-07-02 09:00:00', '2026-07-05 09:00:00', 'CUMPLIDA', 'APP', 0.0, 60000, NULL),
+  (510, 206, 4, 14, 14, 'R-2026-0510', '2026-07-15 14:00:00', '2026-08-05 08:00:00', '2026-08-10 08:00:00', 'CUMPLIDA', 'MOSTRADOR', 10.0, 234000, NULL),
+  (511, 207, 2, 16, 16, 'R-2026-0511', '2026-08-02 09:00:00', '2026-08-20 10:00:00', '2026-08-24 10:00:00', 'CUMPLIDA', 'WEB', 0.0, 190000, NULL),
+  (512, 208, 6, 14, 14, 'R-2026-0512', '2026-08-25 10:00:00', '2026-09-10 09:00:00', '2026-09-15 09:00:00', 'CUMPLIDA', 'APP', 20.0, 192000, NULL),
+  (513, 209, 3, 10, 10, 'R-2026-0513', '2026-08-15 16:00:00', '2026-09-01 08:00:00', '2026-09-08 08:00:00', 'CUMPLIDA', 'WEB', 15.0, 221000, NULL),
+  (514, 210, 1, 16, 16, 'R-2026-0514', '2026-09-01 12:00:00', '2026-09-15 10:00:00', '2026-09-19 10:00:00', 'CUMPLIDA', 'APP', 0.0, 98000, NULL),
+  (515, 211, 2, 18, 18, 'R-2026-0515', '2026-07-05 15:00:00', '2026-07-20 11:00:00', '2026-07-25 11:00:00', 'CUMPLIDA', 'WEB', 0.0, 225000, NULL),
+  (516, 212, 1, 18, 18, 'R-2026-0516', '2026-07-28 10:00:00', '2026-08-10 14:00:00', '2026-08-13 14:00:00', 'CUMPLIDA', 'APP', 0.0, 115000, NULL),
+  (517, 213, 2, 12, 12, 'R-2026-0517', '2026-09-10 14:00:00', '2026-09-22 09:00:00', '2026-09-26 09:00:00', 'CUMPLIDA', 'WEB', 0.0, 210000, NULL),
+  (518, 214, 4, 12, 12, 'R-2026-0518', '2026-09-18 10:00:00', '2026-10-02 08:00:00', '2026-10-07 08:00:00', 'CUMPLIDA', 'MOSTRADOR', 0.0, 270000, NULL),
+  (519, 215, 3, 10, 10, 'R-2026-0519', '2026-09-05 08:00:00', '2026-09-15 08:00:00', '2026-09-25 08:00:00', 'CUMPLIDA', 'WEB', 18.0, 213200, NULL),
+  (520, 216, 3, 12, 12, 'R-2026-0520', '2026-08-20 09:00:00', '2026-09-01 08:00:00', '2026-09-13 08:00:00', 'CUMPLIDA', 'WEB', 18.0, 237800, NULL),
+  (521, 217, 4, 10, 10, 'R-2026-0521', '2026-09-01 10:00:00', '2026-09-12 08:00:00', '2026-09-20 08:00:00', 'CUMPLIDA', 'MOSTRADOR', 18.0, 196800, NULL),
+  (522, 218, 4, 18, 18, 'R-2026-0522', '2026-08-01 11:00:00', '2026-08-18 09:00:00', '2026-08-24 09:00:00', 'CUMPLIDA', 'WEB', 18.0, 237800, NULL),
+  (523, 220, 3, 16, 16, 'R-2026-0523', '2026-09-15 08:30:00', '2026-10-01 08:00:00', '2026-10-16 08:00:00', 'CUMPLIDA', 'WEB', 18.0, 221400, NULL),
+  (524, 221, 2, 14, 14, 'R-2026-0524', '2026-09-25 09:00:00', '2026-10-05 08:00:00', '2026-10-12 08:00:00', 'CUMPLIDA', 'WEB', 18.0, 168100, NULL),
+  (525, 222, 3, 10, 10, 'R-2026-0525', '2026-09-28 10:00:00', '2026-10-10 08:00:00', '2026-10-24 08:00:00', 'CUMPLIDA', 'WEB', 18.0, 213200, NULL),
+  (526, 201, 1, 10, 10, 'R-2026-0526', '2026-09-18 11:00:00', '2026-09-28 09:00:00', '2026-10-02 09:00:00', 'CUMPLIDA', 'APP', 10.0, 85500, NULL),
+  (527, 203, 2, 10, 10, 'R-2026-0527', '2026-09-22 15:00:00', '2026-10-05 08:00:00', '2026-10-10 08:00:00', 'CUMPLIDA', 'WEB', 0.0, 185000, NULL),
+  (528, 200, 1, 10, 10, 'R-2026-0528', '2026-11-02 10:00:00', '2026-11-08 09:00:00', '2026-11-12 18:00:00', 'CONFIRMADA', 'APP', 15.0, 80750, NULL),
+  (529, 222, 3, 10, 10, 'R-2026-0529', '2026-10-25 09:00:00', '2026-11-05 08:00:00', '2026-11-15 17:00:00', 'CONFIRMADA', 'WEB', 18.0, 213200, NULL),
+  (530, 204, 5, 10, 10, 'R-2026-0530', '2026-11-01 10:00:00', '2026-11-20 08:00:00', '2026-11-24 18:00:00', 'CONFIRMADA', 'APP', 15.0, 46750, NULL),
+  (531, 208, 2, 14, 14, 'R-2026-0531', '2026-11-02 11:30:00', '2026-11-25 09:00:00', '2026-11-30 18:00:00', 'CONFIRMADA', 'WEB', 20.0, 164000, NULL),
+  (532, 205, 1, 12, 12, 'R-2026-0532', '2026-10-10 14:00:00', '2026-10-15 10:00:00', '2026-10-18 10:00:00', 'CANCELADA', 'APP', 0.0, 105000, '2026-10-14 18:30:00'),
+  (533, 207, 3, 16, 16, 'R-2026-0533', '2026-10-18 09:00:00', '2026-10-22 08:00:00', '2026-10-25 08:00:00', 'CANCELADA', 'WEB', 0.0, 270000, '2026-10-22 06:15:00'),
+  (534, 211, 5, 18, 18, 'R-2026-0534', '2026-10-20 16:00:00', '2026-10-28 09:00:00', '2026-10-31 09:00:00', 'NO_SHOW', 'APP', 0.0, 70000, NULL);
+
+-- 24. CONTRATO (30 contratos: 28 cerrados y 2 abiertos en ejecución)
+INSERT INTO contrato (id_contrato, id_reserva, id_vehiculo, id_empleado, id_sede_devolucion_real, numero_contrato, modalidad, fecha_hora_entrega, fecha_hora_devolucion_real, estado) VALUES
+  (900, 500, 100, 31, 10, 'C-2026-0900', 'CORTO_PLAZO', '2026-05-10 10:10:00', '2026-05-13 09:50:00', 'CERRADO'),
+  (901, 501, 110, 31, 10, 'C-2026-0901', 'CORTO_PLAZO', '2026-08-15 09:15:00', '2026-08-19 09:10:00', 'CERRADO'),
+  (902, 502, 101, 33, 11, 'C-2026-0902', 'CORTO_PLAZO', '2026-10-10 08:40:00', '2026-10-13 08:20:00', 'CERRADO'),
+  (903, 503, 111, 31, 12, 'C-2026-0903', 'CORTO_PLAZO', '2026-06-01 08:15:00', '2026-06-06 10:30:00', 'CERRADO'),
+  (904, 504, 131, 31, 10, 'C-2026-0904', 'CORTO_PLAZO', '2026-04-10 09:05:00', '2026-04-14 08:50:00', 'CERRADO'),
+  (905, 505, 132, 31, 10, 'C-2026-0905', 'CORTO_PLAZO', '2026-07-10 08:10:00', '2026-07-15 08:00:00', 'CERRADO'),
+  (906, 506, 139, 35, 12, 'C-2026-0906', 'CORTO_PLAZO', '2026-09-01 10:15:00', '2026-09-05 10:00:00', 'CERRADO'),
+  (907, 507, 103, 35, 12, 'C-2026-0907', 'CORTO_PLAZO', '2026-05-15 09:10:00', '2026-05-18 09:40:00', 'CERRADO'),
+  (908, 508, 123, 35, 12, 'C-2026-0908', 'CORTO_PLAZO', '2026-06-10 08:15:00', '2026-06-16 08:10:00', 'CERRADO'),
+  (909, 509, 137, 39, 14, 'C-2026-0909', 'CORTO_PLAZO', '2026-07-02 09:10:00', '2026-07-05 09:00:00', 'CERRADO'),
+  (910, 510, 129, 39, 14, 'C-2026-0910', 'CORTO_PLAZO', '2026-08-05 08:20:00', '2026-08-10 09:30:00', 'CERRADO'),
+  (911, 511, 119, 43, 16, 'C-2026-0911', 'CORTO_PLAZO', '2026-08-20 10:10:00', '2026-08-24 10:00:00', 'CERRADO'),
+  (912, 512, 141, 39, 14, 'C-2026-0912', 'CORTO_PLAZO', '2026-09-10 09:10:00', '2026-09-15 08:50:00', 'CERRADO'),
+  (913, 513, 121, 31, 10, 'C-2026-0913', 'CORTO_PLAZO', '2026-09-01 08:15:00', '2026-09-08 08:00:00', 'CERRADO'),
+  (914, 514, 108, 43, 16, 'C-2026-0914', 'CORTO_PLAZO', '2026-09-15 10:10:00', '2026-09-19 09:50:00', 'CERRADO'),
+  (915, 515, 120, 46, 18, 'C-2026-0915', 'CORTO_PLAZO', '2026-07-20 11:15:00', '2026-07-25 11:00:00', 'CERRADO'),
+  (916, 516, 109, 46, 18, 'C-2026-0916', 'CORTO_PLAZO', '2026-08-10 14:10:00', '2026-08-13 13:50:00', 'CERRADO'),
+  (917, 517, 114, 35, 12, 'C-2026-0917', 'CORTO_PLAZO', '2026-09-22 09:15:00', '2026-09-26 09:00:00', 'CERRADO'),
+  (918, 518, 128, 35, 12, 'C-2026-0918', 'CORTO_PLAZO', '2026-10-02 08:20:00', '2026-10-07 08:15:00', 'CERRADO'),
+  (919, 519, 121, 31, 10, 'C-2026-0919', 'MENSUAL', '2026-09-15 08:10:00', '2026-09-25 08:00:00', 'CERRADO'),
+  (920, 520, 123, 35, 12, 'C-2026-0920', 'MENSUAL', '2026-09-01 08:15:00', '2026-09-13 08:10:00', 'CERRADO'),
+  (921, 521, 127, 31, 10, 'C-2026-0921', 'CORTO_PLAZO', '2026-09-12 08:20:00', '2026-09-20 08:15:00', 'CERRADO'),
+  (922, 522, 130, 46, 18, 'C-2026-0922', 'CORTO_PLAZO', '2026-08-18 09:15:00', '2026-08-24 09:00:00', 'CERRADO'),
+  (923, 523, 125, 43, 16, 'C-2026-0923', 'MENSUAL', '2026-10-01 08:15:00', '2026-10-16 08:10:00', 'CERRADO'),
+  (924, 524, 117, 39, 14, 'C-2026-0924', 'CORTO_PLAZO', '2026-10-05 08:15:00', '2026-10-12 08:05:00', 'CERRADO'),
+  (925, 525, 122, 31, 10, 'C-2026-0925', 'MENSUAL', '2026-10-10 08:10:00', '2026-10-24 08:00:00', 'CERRADO'),
+  (926, 526, 100, 31, 10, 'C-2026-0926', 'CORTO_PLAZO', '2026-09-28 09:10:00', '2026-10-02 09:00:00', 'CERRADO'),
+  (927, 527, 110, 31, 10, 'C-2026-0927', 'CORTO_PLAZO', '2026-10-05 08:15:00', '2026-10-10 08:00:00', 'CERRADO'),
+  (928, 528, 100, 31, NULL, 'C-2026-0928', 'CORTO_PLAZO', '2026-11-08 09:10:00', NULL, 'ABIERTO'),
+  (929, 529, 121, 31, NULL, 'C-2026-0929', 'MENSUAL', '2026-11-05 08:15:00', NULL, 'ABIERTO');
+
+-- 25. CONDUCTOR_AUTORIZADO
+INSERT INTO conductor_autorizado (id_contrato, id_cliente, es_principal, cargo_dia_pactado) VALUES
+  (900, 200, TRUE, 0),
+  (901, 200, TRUE, 0),
+  (902, 200, TRUE, 0),
+  (903, 201, TRUE, 0),
+  (904, 202, TRUE, 0),
+  (905, 202, TRUE, 0),
+  (906, 202, TRUE, 0),
+  (907, 203, TRUE, 0),
+  (908, 204, TRUE, 0),
+  (909, 205, TRUE, 0),
+  (910, 206, TRUE, 0),
+  (910, 200, FALSE, 16000),
+  (911, 207, TRUE, 0),
+  (912, 208, TRUE, 0),
+  (913, 209, TRUE, 0),
+  (914, 210, TRUE, 0),
+  (915, 211, TRUE, 0),
+  (916, 212, TRUE, 0),
+  (917, 213, TRUE, 0),
+  (918, 214, TRUE, 0),
+  (919, 200, TRUE, 0),
+  (920, 204, TRUE, 0),
+  (921, 201, TRUE, 0),
+  (922, 206, TRUE, 0),
+  (923, 213, TRUE, 0),
+  (924, 208, TRUE, 0),
+  (925, 209, TRUE, 0),
+  (926, 201, TRUE, 0),
+  (927, 203, TRUE, 0),
+  (928, 200, TRUE, 0),
+  (929, 209, TRUE, 0);
+
+-- 26. CONTRATO_SERVICIO
 INSERT INTO contrato_servicio (id_contrato, id_servicio, cantidad, valor_dia_pactado) VALUES
-  (900,1,1,45000),
-  (901,2,1,15000),
-  (901,3,1,12000),
-  (903,1,1,45000),
-  (904,3,1,12000),
-  (905,4,1,18000);
+  (900, 1, 1, 48000),
+  (901, 2, 1, 28000),
+  (901, 3, 1, 18000),
+  (902, 1, 1, 48000),
+  (903, 1, 1, 48000),
+  (906, 1, 1, 48000),
+  (906, 4, 1, 22000),
+  (907, 2, 1, 28000),
+  (908, 1, 1, 48000),
+  (910, 1, 1, 48000),
+  (910, 5, 1, 16000),
+  (911, 2, 1, 28000),
+  (912, 1, 1, 48000),
+  (913, 1, 1, 48000),
+  (914, 2, 1, 28000),
+  (915, 1, 1, 48000),
+  (915, 3, 1, 18000),
+  (916, 2, 1, 28000),
+  (917, 1, 1, 48000),
+  (918, 1, 1, 48000),
+  (918, 4, 1, 22000),
+  (919, 1, 1, 48000),
+  (920, 1, 1, 48000),
+  (921, 1, 1, 48000),
+  (922, 1, 1, 48000),
+  (922, 4, 1, 22000),
+  (923, 1, 1, 48000),
+  (924, 1, 1, 48000),
+  (925, 1, 1, 48000),
+  (926, 2, 1, 28000),
+  (927, 1, 1, 48000),
+  (928, 1, 1, 48000),
+  (929, 1, 1, 48000);
 
--- INSPECCION: entrega (y devolución para los 5 contratos cerrados) = 11 filas.
+-- 27. INSPECCION (Entrega y Devolución)
 INSERT INTO inspeccion (id_contrato, tipo, id_empleado, fecha_hora, km_lectura, nivel_energia_pct, observaciones) VALUES
-  (900,'ENTREGA',32,'2026-10-15 10:10:00',14800,100,'Vehículo en buen estado, tanque lleno.'),
-  (900,'DEVOLUCION',32,'2026-10-18 09:50:00',15200,40,'Rayón leve en puerta trasera izquierda.'),
-  (901,'ENTREGA',32,'2026-10-20 09:05:00',4200,100,'Sin novedades.'),
-  (901,'DEVOLUCION',32,'2026-10-24 10:30:00',4780,20,'Devuelto con tanque casi vacío.'),
-  (902,'ENTREGA',32,'2026-10-22 08:10:00',8100,100,'Moto sin rayones.'),
-  (902,'DEVOLUCION',32,'2026-10-25 08:05:00',8340,65,'Sin novedades.'),
-  (903,'ENTREGA',34,'2026-10-25 11:05:00',41000,100,'Pickup revisada, sin daños previos.'),
-  (903,'DEVOLUCION',34,'2026-10-28 13:30:00',41550,30,'Golpe en parachoques trasero.'),
-  (904,'ENTREGA',35,'2026-10-27 09:10:00',21950,100,'Sin novedades.'),
-  (904,'DEVOLUCION',35,'2026-10-29 09:00:00',22180,55,'Sin novedades.'),
-  (905,'ENTREGA',31,'2026-11-10 09:05:00',28700,100,'Sin novedades, contrato en curso.');
+  (900, 'ENTREGA', 32, '2026-05-10 10:10:00', 14200, 100, 'Vehículo entregado limpio y tanque lleno.'),
+  (900, 'DEVOLUCION', 32, '2026-05-13 09:50:00', 14550, 100, 'Sin novedades al retorno.'),
+  (901, 'ENTREGA', 32, '2026-08-15 09:15:00', 26100, 100, 'Buen estado general.'),
+  (901, 'DEVOLUCION', 32, '2026-08-19 09:10:00', 26850, 90, 'Retorno conforme.'),
+  (902, 'ENTREGA', 32, '2026-10-10 08:40:00', 29800, 100, 'Entrega en sede Cabecera.'),
+  (902, 'DEVOLUCION', 32, '2026-10-13 08:20:00', 30220, 100, 'Devolución sin novedad.'),
+  (903, 'ENTREGA', 32, '2026-06-01 08:15:00', 31200, 100, 'Viaje Bucaramanga a Bogotá.'),
+  (903, 'DEVOLUCION', 36, '2026-06-06 10:30:00', 32150, 40, 'Llegada El Dorado. Retorno en otra sede y combustible bajo.'),
+  (904, 'ENTREGA', 32, '2026-04-10 09:05:00', 10200, 100, 'Moto entregada con casco reglamentario.'),
+  (904, 'DEVOLUCION', 32, '2026-04-14 08:50:00', 10620, 95, 'Devolución impecable.'),
+  (905, 'ENTREGA', 32, '2026-07-10 08:10:00', 12800, 100, 'Moto lista para ruta de Santander.'),
+  (905, 'DEVOLUCION', 32, '2026-07-15 08:00:00', 13580, 100, 'Devuelta en perfecto estado.'),
+  (906, 'ENTREGA', 36, '2026-09-01 10:15:00', 3200, 100, 'Batería al 100%, cargador portátil incluido.'),
+  (906, 'DEVOLUCION', 36, '2026-09-05 10:00:00', 3740, 85, 'Batería 85%, excelente estado.'),
+  (907, 'ENTREGA', 36, '2026-05-15 09:10:00', 4100, 100, 'Sin daños previos.'),
+  (907, 'DEVOLUCION', 36, '2026-05-18 09:40:00', 4480, 80, 'Rayón leve puerta delantera.'),
+  (908, 'ENTREGA', 36, '2026-06-10 08:15:00', 36200, 100, 'Pickup en perfecto estado.'),
+  (908, 'DEVOLUCION', 36, '2026-06-16 08:10:00', 37480, 90, 'Devolución conforme.'),
+  (909, 'ENTREGA', 40, '2026-07-02 09:10:00', 21500, 100, 'Moto entregada limpia.'),
+  (909, 'DEVOLUCION', 40, '2026-07-05 09:00:00', 21890, 80, 'Devolución sin novedades.'),
+  (910, 'ENTREGA', 40, '2026-08-05 08:20:00', 63100, 100, 'Van para grupo de eventos.'),
+  (910, 'DEVOLUCION', 40, '2026-08-10 09:30:00', 64450, 85, 'Golpe en esquina parachoques trasero.'),
+  (911, 'ENTREGA', 44, '2026-08-20 10:10:00', 26500, 100, 'Camioneta en excelente condición.'),
+  (911, 'DEVOLUCION', 44, '2026-08-24 10:00:00', 27420, 100, 'Devolución impecable.'),
+  (912, 'ENTREGA', 40, '2026-09-10 09:10:00', 4800, 100, 'Vehículo eléctrico entregado con carga completa.'),
+  (912, 'DEVOLUCION', 40, '2026-09-15 08:50:00', 5620, 90, 'Devuelto con batería al 90%.'),
+  (913, 'ENTREGA', 32, '2026-09-01 08:15:00', 44100, 100, 'Pickup para inspección de proyectos Santander.'),
+  (913, 'DEVOLUCION', 32, '2026-09-08 08:00:00', 45850, 100, 'Devolución conforme.'),
+  (914, 'ENTREGA', 44, '2026-09-15 10:10:00', 35200, 100, 'Vehículo entregado limpio.'),
+  (914, 'DEVOLUCION', 44, '2026-09-19 09:50:00', 35780, 100, 'Sin novedades.'),
+  (915, 'ENTREGA', 47, '2026-07-20 11:15:00', 5800, 100, 'Duster en Cartagena para turismo familiar.'),
+  (915, 'DEVOLUCION', 47, '2026-07-25 11:00:00', 6620, 95, 'Devuelta en excelente condición.'),
+  (916, 'ENTREGA', 47, '2026-08-10 14:10:00', 6900, 100, 'Onix listo para recorrido urbano.'),
+  (916, 'DEVOLUCION', 47, '2026-08-13 13:50:00', 7340, 100, 'Retorno conforme.'),
+  (917, 'ENTREGA', 36, '2026-09-22 09:15:00', 35400, 100, 'Fortuner en El Dorado.'),
+  (917, 'DEVOLUCION', 36, '2026-09-26 09:00:00', 36380, 100, 'Devolución sin observaciones.'),
+  (918, 'ENTREGA', 36, '2026-10-02 08:20:00', 30800, 100, 'Van ejecutiva para convención empresarial.'),
+  (918, 'DEVOLUCION', 36, '2026-10-07 08:15:00', 32150, 95, 'Devolución impecable.'),
+  (919, 'ENTREGA', 32, '2026-09-15 08:10:00', 46000, 100, 'Alquiler corporativo flota Andinos.'),
+  (919, 'DEVOLUCION', 32, '2026-09-25 08:00:00', 48450, 90, 'Retorno conforme.'),
+  (920, 'ENTREGA', 36, '2026-09-01 08:15:00', 38000, 100, 'Flota para proyecto de infraestructura vía Llano.'),
+  (920, 'DEVOLUCION', 36, '2026-09-13 08:10:00', 40950, 85, 'Retorno conforme, suciedad moderada en chasis.'),
+  (921, 'ENTREGA', 32, '2026-09-12 08:20:00', 52100, 100, 'Van para circuito turístico Barichara - Cañón del Chicamocha.'),
+  (921, 'DEVOLUCION', 32, '2026-09-20 08:15:00', 54300, 95, 'Devolución impecable.'),
+  (922, 'ENTREGA', 47, '2026-08-18 09:15:00', 23400, 100, 'Van para traslado de ponentes internacionales cumbre médica.'),
+  (922, 'DEVOLUCION', 47, '2026-08-24 09:00:00', 24850, 100, 'Excelente estado al regreso.'),
+  (923, 'ENTREGA', 44, '2026-10-01 08:15:00', 31500, 100, 'Pickup para supervisión de plantas y estaciones Valle.'),
+  (923, 'DEVOLUCION', 44, '2026-10-16 08:10:00', 34800, 95, 'Devolución conforme.'),
+  (924, 'ENTREGA', 40, '2026-10-05 08:15:00', 29200, 100, 'SUV ejecutiva para directivos de banca corporativa.'),
+  (924, 'DEVOLUCION', 40, '2026-10-12 08:05:00', 30950, 95, 'Devuelta en óptimas condiciones.'),
+  (925, 'ENTREGA', 32, '2026-10-10 08:10:00', 32100, 100, 'Pickup para operaciones campo petrolero Barrancabermeja.'),
+  (925, 'DEVOLUCION', 32, '2026-10-24 08:00:00', 35450, 80, 'Retorno conforme, inspección de chasis aprobada.'),
+  (926, 'ENTREGA', 32, '2026-09-28 09:10:00', 14900, 100, 'Entrega en Palonegro.'),
+  (926, 'DEVOLUCION', 32, '2026-10-02 09:00:00', 15480, 100, 'Devolución conforme.'),
+  (927, 'ENTREGA', 32, '2026-10-05 08:15:00', 27100, 100, 'Duster entregada limpia.'),
+  (927, 'DEVOLUCION', 32, '2026-10-10 08:00:00', 28150, 100, 'Retorno conforme.'),
+  (928, 'ENTREGA', 32, '2026-11-08 09:10:00', 16050, 100, 'Contrato en curso, cliente ORO.'),
+  (929, 'ENTREGA', 32, '2026-11-05 08:15:00', 49200, 100, 'Pickup en operación de campo, contrato vigente.');
 
+-- 28. DANO (Registro detallado por inspección)
 INSERT INTO dano (id_contrato, tipo_inspeccion, nro_item, zona_vehiculo, descripcion, gravedad, costo_estimado) VALUES
-  (900,'DEVOLUCION',1,'LATERAL_IZQ','Rayón superficial en puerta trasera izquierda','LEVE',150000),
-  (903,'DEVOLUCION',1,'TRASERA','Golpe con fisura en el parachoques trasero','MODERADO',620000),
-  (903,'ENTREGA',1,'LLANTAS','Desgaste normal en banda de rodadura','LEVE',NULL),
-  (900,'ENTREGA',1,'INTERIOR','Mancha pequeña en tapete del conductor','LEVE',NULL),
-  (901,'DEVOLUCION',1,'OTRO','Olor a cigarrillo en el habitáculo','LEVE',50000);
+  (907, 'DEVOLUCION', 1, 'LATERAL_DER', 'Rayón superficial de 10 cm en puerta delantera derecha', 'LEVE', 160000),
+  (910, 'DEVOLUCION', 1, 'TRASERA', 'Fisura en parachoques trasero derecho', 'MODERADO', 450000);
 
+-- 29. GARANTIA (Pre-autorizaciones en tarjeta de crédito)
 INSERT INTO garantia (id_garantia, id_contrato, monto_retenido, franquicia, ultimos_4_digitos, codigo_autorizacion, fecha_retencion, fecha_liberacion, monto_cobrado, estado) VALUES
-  (700,900,1500000,'VISA','4321','AUT-100233','2026-10-15 10:00:00','2026-10-18 10:15:00',150000,'COBRADA_PARCIAL'),
-  (701,901,2500000,'MASTERCARD','9087','AUT-100234','2026-10-20 09:00:00','2026-10-24 11:00:00',0,'LIBERADA'),
-  (702,902,600000,'VISA','1122','AUT-100235','2026-10-22 08:00:00','2026-10-25 08:30:00',0,'LIBERADA'),
-  (703,903,3000000,'DINERS','5566','AUT-100236','2026-10-25 11:00:00','2026-10-28 14:00:00',620000,'COBRADA_PARCIAL'),
-  (704,904,600000,'VISA','3344','AUT-100237','2026-10-27 09:00:00','2026-10-29 09:30:00',0,'LIBERADA'),
-  (705,905,1500000,'AMEX','7788','AUT-100238','2026-11-10 09:00:00',NULL,0,'RETENIDA');
+  (700, 900, 1500000, 'VISA', '4321', 'AUT-100201', '2026-05-10 10:00:00', '2026-05-13 10:15:00', 0, 'LIBERADA'),
+  (701, 901, 2500000, 'VISA', '4321', 'AUT-100202', '2026-08-15 09:00:00', '2026-08-19 09:30:00', 0, 'LIBERADA'),
+  (702, 902, 1500000, 'VISA', '4321', 'AUT-100203', '2026-10-10 08:30:00', '2026-10-13 08:45:00', 0, 'LIBERADA'),
+  (703, 903, 2500000, 'MASTERCARD', '9087', 'AUT-100204', '2026-06-01 08:00:00', '2026-06-06 11:00:00', 260000, 'COBRADA_PARCIAL'),
+  (704, 904, 700000, 'VISA', '1122', 'AUT-100205', '2026-04-10 09:00:00', '2026-04-14 09:15:00', 0, 'LIBERADA'),
+  (705, 905, 700000, 'VISA', '1122', 'AUT-100206', '2026-07-10 08:00:00', '2026-07-15 08:30:00', 0, 'LIBERADA'),
+  (706, 906, 3000000, 'VISA', '1122', 'AUT-100207', '2026-09-01 10:00:00', '2026-09-05 10:30:00', 0, 'LIBERADA'),
+  (707, 907, 1500000, 'AMEX', '7788', 'AUT-100208', '2026-05-15 09:00:00', '2026-05-18 10:00:00', 160000, 'COBRADA_PARCIAL'),
+  (708, 908, 3500000, 'DINERS', '5566', 'AUT-100209', '2026-06-10 08:00:00', '2026-06-16 08:30:00', 0, 'LIBERADA'),
+  (709, 909, 700000, 'MASTERCARD', '3344', 'AUT-100210', '2026-07-02 09:00:00', '2026-07-05 09:20:00', 0, 'LIBERADA'),
+  (710, 910, 3000000, 'VISA', '8899', 'AUT-100211', '2026-08-05 08:00:00', '2026-08-10 10:00:00', 515000, 'COBRADA_PARCIAL'),
+  (711, 911, 2500000, 'VISA', '2233', 'AUT-100212', '2026-08-20 10:00:00', '2026-08-24 10:20:00', 0, 'LIBERADA'),
+  (712, 912, 3000000, 'MASTERCARD', '6677', 'AUT-100213', '2026-09-10 09:00:00', '2026-09-15 09:15:00', 0, 'LIBERADA'),
+  (713, 913, 3500000, 'VISA', '9900', 'AUT-100214', '2026-09-01 08:00:00', '2026-09-08 08:30:00', 0, 'LIBERADA'),
+  (714, 914, 1500000, 'VISA', '1100', 'AUT-100215', '2026-09-15 10:00:00', '2026-09-19 10:15:00', 0, 'LIBERADA'),
+  (715, 915, 2500000, 'MASTERCARD', '5544', 'AUT-100216', '2026-07-20 11:00:00', '2026-07-25 11:20:00', 0, 'LIBERADA'),
+  (716, 916, 1500000, 'VISA', '4455', 'AUT-100217', '2026-08-10 14:00:00', '2026-08-13 14:15:00', 0, 'LIBERADA'),
+  (717, 917, 2500000, 'AMEX', '9988', 'AUT-100218', '2026-09-22 09:00:00', '2026-09-26 09:20:00', 0, 'LIBERADA'),
+  (718, 918, 3000000, 'VISA', '3322', 'AUT-100219', '2026-10-02 08:00:00', '2026-10-07 08:30:00', 0, 'LIBERADA'),
+  (719, 919, 3500000, 'TRANSFERENCIA', '9911', 'AUT-CORP-01', '2026-09-15 08:00:00', '2026-09-25 09:00:00', 0, 'LIBERADA'),
+  (720, 920, 3500000, 'TRANSFERENCIA', '9912', 'AUT-CORP-02', '2026-09-01 08:00:00', '2026-09-13 09:00:00', 80000, 'COBRADA_PARCIAL'),
+  (721, 921, 3000000, 'TRANSFERENCIA', '9913', 'AUT-CORP-03', '2026-09-12 08:00:00', '2026-09-20 09:00:00', 0, 'LIBERADA'),
+  (722, 922, 3000000, 'TRANSFERENCIA', '9914', 'AUT-CORP-04', '2026-08-18 09:00:00', '2026-08-24 10:00:00', 0, 'LIBERADA'),
+  (723, 923, 3500000, 'TRANSFERENCIA', '9915', 'AUT-CORP-05', '2026-10-01 08:00:00', '2026-10-16 09:00:00', 0, 'LIBERADA'),
+  (724, 924, 2500000, 'TRANSFERENCIA', '9916', 'AUT-CORP-06', '2026-10-05 08:00:00', '2026-10-12 09:00:00', 0, 'LIBERADA'),
+  (725, 925, 3500000, 'TRANSFERENCIA', '9917', 'AUT-CORP-07', '2026-10-10 08:00:00', '2026-10-24 09:00:00', 0, 'LIBERADA'),
+  (726, 926, 1500000, 'MASTERCARD', '9087', 'AUT-100220', '2026-09-28 09:00:00', '2026-10-02 09:15:00', 0, 'LIBERADA'),
+  (727, 927, 2500000, 'AMEX', '7788', 'AUT-100221', '2026-10-05 08:00:00', '2026-10-10 08:20:00', 0, 'LIBERADA'),
+  (728, 928, 1500000, 'VISA', '4321', 'AUT-100222', '2026-11-08 09:00:00', NULL, 0, 'RETENIDA'),
+  (729, 929, 3500000, 'TRANSFERENCIA', '9918', 'AUT-CORP-08', '2026-11-05 08:00:00', NULL, 0, 'RETENIDA');
 
+-- 30. CARGO (Penalizaciones, cargos por daño, combustible, retraso)
 INSERT INTO cargo (id_cargo, id_reserva, id_contrato_dano, tipo_inspeccion_dano, nro_item_dano, tipo, descripcion, valor, fecha_registro) VALUES
-  (800,507,NULL,NULL,NULL,'CANCELACION','Cancelación con menos de 24 horas de anticipación.',95000,'2026-10-11 08:00:00'),
-  (801,508,NULL,NULL,NULL,'NO_SHOW','Cliente no se presentó a recoger el vehículo.',55000,'2026-10-30 10:00:00'),
-  (802,900,900,'DEVOLUCION',1,'DANO','Reparación de rayón en puerta trasera izquierda.',150000,'2026-10-18 10:00:00'),
-  (803,903,903,'DEVOLUCION',1,'DANO','Reparación de parachoques trasero con fisura.',620000,'2026-10-28 14:00:00'),
-  (804,901,NULL,NULL,NULL,'COMBUSTIBLE','Devolución con menos del 25% de combustible.',60000,'2026-10-24 10:40:00');
+  (800, 503, NULL, NULL, NULL, 'RETORNO_OTRA_SEDE', 'Recargo contractual por devolución en sede Aeropuerto El Dorado Bogotá', 195000, '2026-06-01 08:00:00'),
+  (801, 503, NULL, NULL, NULL, 'COMBUSTIBLE', 'Cobro de repostaje de combustible devuelto al 40%', 65000, '2026-06-01 08:00:00'),
+  (802, 507, 907, 'DEVOLUCION', 1, 'DANO', 'Reparación y pulido de rayón en puerta delantera derecha', 160000, '2026-05-15 09:00:00'),
+  (803, 510, 910, 'DEVOLUCION', 1, 'DANO', 'Reparación de fisura en parachoques trasero', 450000, '2026-08-05 08:00:00'),
+  (804, 510, NULL, NULL, NULL, 'DEVOLUCION_TARDIA', 'Cargo por 1.5 horas de retraso en devolución sin previo aviso', 65000, '2026-08-05 08:00:00'),
+  (805, 520, NULL, NULL, NULL, 'LIMPIEZA', 'Lavado especializado de chasis y desmanchado por lodo', 80000, '2026-09-01 08:00:00'),
+  (806, 532, NULL, NULL, NULL, 'CANCELACION', 'Penalización por cancelación con menos de 24 horas de antelación', 105000, '2026-10-15 10:00:00'),
+  (807, 533, NULL, NULL, NULL, 'CANCELACION', 'Penalización por cancelación extemporánea en fecha de recogida', 135000, '2026-10-22 08:00:00'),
+  (808, 534, NULL, NULL, NULL, 'NO_SHOW', 'Cargo por no presentarse al retiro de la motocicleta reservada', 70000, '2026-10-28 09:00:00');
 
+-- 31. PAGO (Cobros, anticipos, saldos y penalidades aplicadas)
 INSERT INTO pago (id_pago, id_reserva, fecha_hora, valor, metodo, concepto, referencia_transaccion, estado) VALUES
-  (600,500,'2026-10-01 09:10:00',128250,'TARJETA_CREDITO','ANTICIPO','TX-88421','APLICADO'),
-  (601,500,'2026-10-18 10:00:00',128250,'TARJETA_CREDITO','SALDO','TX-88430','APLICADO'),
-  (602,501,'2026-10-02 11:10:00',324000,'TARJETA_CREDITO','ANTICIPO','TX-88422','APLICADO'),
-  (603,501,'2026-10-24 11:00:00',324000,'TARJETA_CREDITO','SALDO','TX-88431','APLICADO'),
-  (604,502,'2026-10-03 08:40:00',70125,'TARJETA_DEBITO','ANTICIPO','TX-88423','APLICADO'),
-  (605,502,'2026-10-25 08:30:00',70125,'TARJETA_DEBITO','SALDO','TX-88432','APLICADO'),
-  (606,504,'2026-10-05 12:10:00',345000,'TRANSFERENCIA','ANTICIPO','TX-88424','APLICADO'),
-  (607,504,'2026-10-28 14:00:00',345000,'TRANSFERENCIA','SALDO','TX-88433','APLICADO'),
-  (608,505,'2026-10-06 09:10:00',52000,'TARJETA_CREDITO','ANTICIPO','TX-88425','APLICADO'),
-  (609,505,'2026-10-29 09:30:00',52000,'TARJETA_CREDITO','SALDO','TX-88434','APLICADO'),
-  (610,507,'2026-10-08 08:10:00',95000,'TARJETA_CREDITO','CARGO_ADICIONAL','TX-88426','APLICADO'),
-  (611,508,'2026-10-09 09:40:00',55000,'TARJETA_DEBITO','CARGO_ADICIONAL','TX-88427','APLICADO');
+  (600, 500, '2026-05-01 09:00:00', 229818.75, 'TARJETA_CREDITO', 'ANTICIPO', 'TX-600A', 'APLICADO'),
+  (601, 500, '2026-05-13 09:50:00', 229818.75, 'TARJETA_CREDITO', 'SALDO', 'TX-601B', 'APLICADO'),
+  (602, 501, '2026-08-01 11:00:00', 483735.0, 'TARJETA_CREDITO', 'ANTICIPO', 'TX-602A', 'APLICADO'),
+  (603, 501, '2026-08-19 09:10:00', 483735.0, 'TARJETA_CREDITO', 'SALDO', 'TX-603B', 'APLICADO'),
+  (604, 502, '2026-10-01 10:00:00', 229818.75, 'TARJETA_CREDITO', 'ANTICIPO', 'TX-604A', 'APLICADO'),
+  (605, 502, '2026-10-13 08:20:00', 229818.75, 'TARJETA_CREDITO', 'SALDO', 'TX-605B', 'APLICADO'),
+  (606, 503, '2026-05-20 14:00:00', 638137.5, 'TARJETA_CREDITO', 'ANTICIPO', 'TX-606A', 'APLICADO'),
+  (607, 503, '2026-06-06 10:30:00', 638137.5, 'TARJETA_CREDITO', 'SALDO', 'TX-607B', 'APLICADO'),
+  (608, 503, '2026-06-06 10:30:00', 195000, 'TARJETA_CREDITO', 'CARGO_ADICIONAL', 'TX-608C', 'APLICADO'),
+  (609, 503, '2026-06-06 10:30:00', 65000, 'TARJETA_CREDITO', 'CARGO_ADICIONAL', 'TX-609C', 'APLICADO'),
+  (610, 504, '2026-04-01 08:30:00', 104720.0, 'TARJETA_CREDITO', 'ANTICIPO', 'TX-610A', 'APLICADO'),
+  (611, 504, '2026-04-14 08:50:00', 104720.0, 'TARJETA_CREDITO', 'SALDO', 'TX-611B', 'APLICADO'),
+  (612, 505, '2026-07-01 10:00:00', 130900.0, 'TARJETA_CREDITO', 'ANTICIPO', 'TX-612A', 'APLICADO'),
+  (613, 505, '2026-07-15 08:00:00', 130900.0, 'TARJETA_CREDITO', 'SALDO', 'TX-613B', 'APLICADO'),
+  (614, 506, '2026-08-20 15:00:00', 642600.0, 'TARJETA_CREDITO', 'ANTICIPO', 'TX-614A', 'APLICADO'),
+  (615, 506, '2026-09-05 10:00:00', 642600.0, 'TARJETA_CREDITO', 'SALDO', 'TX-615B', 'APLICADO'),
+  (616, 507, '2026-05-02 12:00:00', 237405.0, 'TARJETA_CREDITO', 'ANTICIPO', 'TX-616A', 'APLICADO'),
+  (617, 507, '2026-05-18 09:40:00', 237405.0, 'TARJETA_CREDITO', 'SALDO', 'TX-617B', 'APLICADO'),
+  (618, 507, '2026-05-18 09:40:00', 160000, 'TARJETA_CREDITO', 'CARGO_ADICIONAL', 'TX-618C', 'APLICADO'),
+  (619, 508, '2026-05-25 10:00:00', 1051365.0, 'TARJETA_CREDITO', 'ANTICIPO', 'TX-619A', 'APLICADO'),
+  (620, 508, '2026-06-16 08:10:00', 1051365.0, 'TARJETA_CREDITO', 'SALDO', 'TX-620B', 'APLICADO'),
+  (621, 509, '2026-06-20 11:30:00', 107100.0, 'TARJETA_CREDITO', 'ANTICIPO', 'TX-621A', 'APLICADO'),
+  (622, 509, '2026-07-05 09:00:00', 107100.0, 'TARJETA_CREDITO', 'SALDO', 'TX-622B', 'APLICADO'),
+  (623, 510, '2026-07-15 14:00:00', 934150.0, 'TARJETA_CREDITO', 'ANTICIPO', 'TX-623A', 'APLICADO'),
+  (624, 510, '2026-08-10 09:30:00', 934150.0, 'TARJETA_CREDITO', 'SALDO', 'TX-624B', 'APLICADO'),
+  (625, 510, '2026-08-10 09:30:00', 450000, 'TARJETA_CREDITO', 'CARGO_ADICIONAL', 'TX-625C', 'APLICADO'),
+  (626, 510, '2026-08-10 09:30:00', 65000, 'TARJETA_CREDITO', 'CARGO_ADICIONAL', 'TX-626C', 'APLICADO'),
+  (627, 511, '2026-08-02 09:00:00', 518840.0, 'TARJETA_CREDITO', 'ANTICIPO', 'TX-627A', 'APLICADO'),
+  (628, 511, '2026-08-24 10:00:00', 518840.0, 'TARJETA_CREDITO', 'SALDO', 'TX-628B', 'APLICADO'),
+  (629, 512, '2026-08-25 10:00:00', 714000.0, 'TARJETA_CREDITO', 'ANTICIPO', 'TX-629A', 'APLICADO'),
+  (630, 512, '2026-09-15 08:50:00', 714000.0, 'TARJETA_CREDITO', 'SALDO', 'TX-630B', 'APLICADO'),
+  (631, 513, '2026-08-15 16:00:00', 1120385.0, 'TARJETA_CREDITO', 'ANTICIPO', 'TX-631A', 'APLICADO'),
+  (632, 513, '2026-09-08 08:00:00', 1120385.0, 'TARJETA_CREDITO', 'SALDO', 'TX-632B', 'APLICADO'),
+  (633, 514, '2026-09-01 12:00:00', 299880.0, 'TARJETA_CREDITO', 'ANTICIPO', 'TX-633A', 'APLICADO'),
+  (634, 514, '2026-09-19 09:50:00', 299880.0, 'TARJETA_CREDITO', 'SALDO', 'TX-634B', 'APLICADO'),
+  (635, 515, '2026-07-05 15:00:00', 865725.0, 'TARJETA_CREDITO', 'ANTICIPO', 'TX-635A', 'APLICADO'),
+  (636, 515, '2026-07-25 11:00:00', 865725.0, 'TARJETA_CREDITO', 'SALDO', 'TX-636B', 'APLICADO'),
+  (637, 516, '2026-07-28 10:00:00', 255255.0, 'TARJETA_CREDITO', 'ANTICIPO', 'TX-637A', 'APLICADO'),
+  (638, 516, '2026-08-13 13:50:00', 255255.0, 'TARJETA_CREDITO', 'SALDO', 'TX-638B', 'APLICADO'),
+  (639, 517, '2026-09-10 14:00:00', 614040.0, 'TARJETA_CREDITO', 'ANTICIPO', 'TX-639A', 'APLICADO'),
+  (640, 517, '2026-09-26 09:00:00', 614040.0, 'TARJETA_CREDITO', 'SALDO', 'TX-640B', 'APLICADO'),
+  (641, 518, '2026-09-18 10:00:00', 1011500.0, 'TARJETA_CREDITO', 'ANTICIPO', 'TX-641A', 'APLICADO'),
+  (642, 518, '2026-10-07 08:15:00', 1011500.0, 'TARJETA_CREDITO', 'SALDO', 'TX-642B', 'APLICADO'),
+  (643, 519, '2026-09-05 08:00:00', 1554140.0, 'TRANSFERENCIA', 'ANTICIPO', 'TX-643A', 'APLICADO'),
+  (644, 519, '2026-09-25 08:00:00', 1554140.0, 'TRANSFERENCIA', 'SALDO', 'TX-644B', 'APLICADO'),
+  (645, 520, '2026-08-20 09:00:00', 2040612.0, 'TRANSFERENCIA', 'ANTICIPO', 'TX-645A', 'APLICADO'),
+  (646, 520, '2026-09-13 08:10:00', 2040612.0, 'TRANSFERENCIA', 'SALDO', 'TX-646B', 'APLICADO'),
+  (647, 520, '2026-09-13 08:10:00', 80000, 'TRANSFERENCIA', 'CARGO_ADICIONAL', 'TX-647C', 'APLICADO'),
+  (648, 521, '2026-09-01 10:00:00', 1165248.0, 'TRANSFERENCIA', 'ANTICIPO', 'TX-648A', 'APLICADO'),
+  (649, 521, '2026-09-20 08:15:00', 1165248.0, 'TRANSFERENCIA', 'SALDO', 'TX-649B', 'APLICADO'),
+  (650, 522, '2026-08-01 11:00:00', 1098846.0, 'TRANSFERENCIA', 'ANTICIPO', 'TX-650A', 'APLICADO'),
+  (651, 522, '2026-08-24 09:00:00', 1098846.0, 'TRANSFERENCIA', 'SALDO', 'TX-651B', 'APLICADO'),
+  (652, 523, '2026-09-15 08:30:00', 2404395.0, 'TRANSFERENCIA', 'ANTICIPO', 'TX-652A', 'APLICADO'),
+  (653, 523, '2026-10-16 08:10:00', 2404395.0, 'TRANSFERENCIA', 'SALDO', 'TX-653B', 'APLICADO'),
+  (654, 524, '2026-09-25 09:00:00', 900056.5, 'TRANSFERENCIA', 'ANTICIPO', 'TX-654A', 'APLICADO'),
+  (655, 524, '2026-10-12 08:05:00', 900056.5, 'TRANSFERENCIA', 'SALDO', 'TX-655B', 'APLICADO'),
+  (656, 525, '2026-09-28 10:00:00', 2175796.0, 'TRANSFERENCIA', 'ANTICIPO', 'TX-656A', 'APLICADO'),
+  (657, 525, '2026-10-24 08:00:00', 2175796.0, 'TRANSFERENCIA', 'SALDO', 'TX-657B', 'APLICADO'),
+  (658, 526, '2026-09-18 11:00:00', 270130.0, 'TARJETA_CREDITO', 'ANTICIPO', 'TX-658A', 'APLICADO'),
+  (659, 526, '2026-10-02 09:00:00', 270130.0, 'TARJETA_CREDITO', 'SALDO', 'TX-659B', 'APLICADO'),
+  (660, 527, '2026-09-22 15:00:00', 693175.0, 'TARJETA_CREDITO', 'ANTICIPO', 'TX-660A', 'APLICADO'),
+  (661, 527, '2026-10-10 08:00:00', 693175.0, 'TARJETA_CREDITO', 'SALDO', 'TX-661B', 'APLICADO'),
+  (662, 528, '2026-11-02 10:00:00', 306425.0, 'TARJETA_CREDITO', 'ANTICIPO', 'TX-662A', 'APLICADO'),
+  (663, 529, '2026-10-25 09:00:00', 1554140.0, 'TRANSFERENCIA', 'ANTICIPO', 'TX-663A', 'APLICADO'),
+  (664, 532, '2026-10-14 18:30:00', 105000, 'TARJETA_CREDITO', 'CARGO_ADICIONAL', 'TX-664P', 'APLICADO'),
+  (665, 533, '2026-10-22 06:15:00', 135000, 'TARJETA_CREDITO', 'CARGO_ADICIONAL', 'TX-665P', 'APLICADO'),
+  (666, 534, '2026-10-28 09:00:00', 70000, 'TARJETA_CREDITO', 'CARGO_ADICIONAL', 'TX-666P', 'APLICADO');
 
+-- 32. FACTURA (28 Facturas Electrónicas DIAN emitidas)
 INSERT INTO factura (id_factura, id_contrato, numero_factura, fecha_emision, subtotal, impuesto) VALUES
-  (950,900,'FAC-000900','2026-10-18 10:20:00',256500,48735),
-  (951,901,'FAC-000901','2026-10-24 11:10:00',648000,123120),
-  (952,902,'FAC-000902','2026-10-25 08:40:00',140250,26647.5),
-  (953,903,'FAC-000903','2026-10-28 14:10:00',690000,131100),
-  (954,904,'FAC-000904','2026-10-29 09:40:00',104000,19760);
+  (950, 900, 'FAC-000950', '2026-05-13 09:50:00', 386250, 73387.5),
+  (951, 901, 'FAC-000951', '2026-08-19 09:10:00', 813000, 154470.0),
+  (952, 902, 'FAC-000952', '2026-10-13 08:20:00', 386250, 73387.5),
+  (953, 903, 'FAC-000953', '2026-06-06 10:30:00', 1072500, 203775.0),
+  (954, 904, 'FAC-000954', '2026-04-14 08:50:00', 176000, 33440.0),
+  (955, 905, 'FAC-000955', '2026-07-15 08:00:00', 220000, 41800.0),
+  (956, 906, 'FAC-000956', '2026-09-05 10:00:00', 1080000, 205200.0),
+  (957, 907, 'FAC-000957', '2026-05-18 09:40:00', 399000, 75810.0),
+  (958, 908, 'FAC-000958', '2026-06-16 08:10:00', 1767000, 335730.0),
+  (959, 909, 'FAC-000959', '2026-07-05 09:00:00', 180000, 34200.0),
+  (960, 910, 'FAC-000960', '2026-08-10 09:30:00', 1570000, 298300.0),
+  (961, 911, 'FAC-000961', '2026-08-24 10:00:00', 872000, 165680.0),
+  (962, 912, 'FAC-000962', '2026-09-15 08:50:00', 1200000, 228000.0),
+  (963, 913, 'FAC-000963', '2026-09-08 08:00:00', 1883000, 357770.0),
+  (964, 914, 'FAC-000964', '2026-09-19 09:50:00', 504000, 95760.0),
+  (965, 915, 'FAC-000965', '2026-07-25 11:00:00', 1455000, 276450.0),
+  (966, 916, 'FAC-000966', '2026-08-13 13:50:00', 429000, 81510.0),
+  (967, 917, 'FAC-000967', '2026-09-26 09:00:00', 1032000, 196080.0),
+  (968, 918, 'FAC-000968', '2026-10-07 08:15:00', 1700000, 323000.0),
+  (969, 919, 'FAC-000969', '2026-09-25 08:00:00', 2612000, 496280.0),
+  (970, 920, 'FAC-000970', '2026-09-13 08:10:00', 3429600, 651624.0),
+  (971, 921, 'FAC-000971', '2026-09-20 08:15:00', 1958400, 372096.0),
+  (972, 922, 'FAC-000972', '2026-08-24 09:00:00', 1846800, 350892.0),
+  (973, 923, 'FAC-000973', '2026-10-16 08:10:00', 4041000, 767790.0),
+  (974, 924, 'FAC-000974', '2026-10-12 08:05:00', 1512700, 287413.0),
+  (975, 925, 'FAC-000975', '2026-10-24 08:00:00', 3656800, 694792.0),
+  (976, 926, 'FAC-000976', '2026-10-02 09:00:00', 454000, 86260.0),
+  (977, 927, 'FAC-000977', '2026-10-10 08:00:00', 1165000, 221350.0);
 
 SET FOREIGN_KEY_CHECKS = 1;
+-- =====================================================================
+-- FIN DE INSERCIÓN DE DATOS
+-- =====================================================================
